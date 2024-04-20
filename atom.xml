@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Kediros</title>
+  
+  <subtitle>沉溺在现实之中</subtitle>
+  <link href="http://example.com/atom.xml" rel="self"/>
+  
+  <link href="http://example.com/"/>
+  <updated>2024-04-20T02:58:15.452Z</updated>
+  <id>http://example.com/</id>
+  
+  <author>
+    <name>Kediros</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="http://example.com/posts/0.html"/>
+    <id>http://example.com/posts/0.html</id>
+    <published>2023-12-23T13:28:15.333Z</published>
+    <updated>2024-04-20T02:58:15.452Z</updated>
+    
+    <content type="html"><![CDATA[<hr><h2 id="标题-Hello日期-2023-12-23-10-00-00分类-2023-12-23-10-00-00"><a href="#标题-Hello日期-2023-12-23-10-00-00分类-2023-12-23-10-00-00" class="headerlink" title="标题:Hello日期:2023-12-23 10:00:00分类:2023-12-23 10:00:00"></a>标题:Hello<br>日期:2023-12-23 10:00:00<br>分类:2023-12-23 10:00:00</h2><h1 id="学习md测试文章"><a href="#学习md测试文章" class="headerlink" title="学习md测试文章"></a><strong>学习md测试文章</strong></h1><h2 id=""><a href="#" class="headerlink" title=""></a></h2><p>有人说，人生就是一场修行，修行就是一场坚持。<br>我想，我也应该坚持，坚持。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;hr&gt;
+&lt;h2 id=&quot;标题-Hello日期-2023-12-23-10-00-00分类-2023-12-23-10-00-00&quot;&gt;&lt;a href=&quot;#标题-Hello日期-2023-12-23-10-00-00分类-2023-12-23-10-00-00&quot; class=&quot;he</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+</feed>
