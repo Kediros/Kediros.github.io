@@ -64,3 +64,17 @@
 [data-theme='dark'] #footer-wrap a {
   color: var(--light-grey);
 }
+.aplayer .aplayer-icon {
+	width: 15px;
+	height: 15px;
+	border: none;
+	background-color: transparent;
+	outline: none;
+	cursor: pointer;
+	opacity: .8;
+	vertical-align: middle;
+	padding: 0;
+	font-size: 24px !important;
+	margin: 0;
+	display: inline-block
+}
