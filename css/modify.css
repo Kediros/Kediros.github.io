@@ -81,3 +81,10 @@
 .aplayer .aplayer-lrc p {
   font-size: 24px !important;
 }
+.aplayer .aplayer-lrc {
+  max-width: 500px;   /* 设置最大宽度，可根据需要调整 */
+  height: 80px;       /* 设置高度，可根据需要调整 */
+  overflow: auto;     /* 超出部分显示滚动条 */
+  margin: 0 auto;     /* 居中显示 */
+  white-space: pre-line; /* 保持换行 */
+}
