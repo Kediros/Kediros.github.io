@@ -5,8 +5,8 @@
     
     <entry>
       <title></title>
-      <link href="/posts/1.html"/>
-      <url>/posts/1.html</url>
+      <link href="/posts/2.html"/>
+      <url>/posts/2.html</url>
       
         <content type="html"><![CDATA[<h2 id="梦游"><a href="#梦游" class="headerlink" title="梦游"></a>梦游</h2><!-- 12:39 --><p>我睡了很久，有十几个小时，担起来依然很累，很困。但在梦中，我很满足，起来的那一瞬间不真实感也让我满足，这是我感受到的最真实的东西。我感到我完全与这世界分隔开，不再是混乱地相互交错，在那瞬间，我能够确定我自己的存在。但仅靠主观上的感受去确定存在就像在讲什么笑话，只是我在追求罢了，存留在惶恐中，依旧。</p>]]></content>
       
@@ -46,17 +46,6 @@
     
     
     <entry>
-      <title>友情链接</title>
-      <link href="/link/index.html"/>
-      <url>/link/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title></title>
       <link href="/css/modify.css"/>
       <url>/css/modify.css</url>
@@ -71,6 +60,17 @@
       <title>分类</title>
       <link href="/categories/index.html"/>
       <url>/categories/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>友情链接</title>
+      <link href="/link/index.html"/>
+      <url>/link/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
