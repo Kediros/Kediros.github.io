@@ -84,7 +84,7 @@
 .aplayer .aplayer-lrc {
   width: 500px;           /* 固定宽度 */
   max-width: 90%;         /* 响应式，防止溢出 */
-  height: 120px;
+  height: 150px;
   overflow: auto;
   margin: 0 auto;
   white-space: pre-line;
