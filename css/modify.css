@@ -85,7 +85,7 @@
 .aplayer .aplayer-lrc {
   width: 500px;           /* 固定宽度 */
   max-width: 90%;         /* 响应式，防止溢出 */
-  height: 120px !important;
+  height: 90px !important;
   overflow: clip !important;
   margin: 0 auto !important;
   text-align: center !important;     /* 新增：歌词文字居中 */
