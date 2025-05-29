@@ -90,5 +90,5 @@
   margin: 0 auto !important;
   text-align: center !important;     /* 新增：歌词文字居中 */
   white-space: pre-line;
-  display: block;         /* 明确为块级元素 */
+  display: block !important;         /* 明确为块级元素 */
 }
