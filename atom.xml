@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2025-05-29T02:54:15.382Z</updated>
+  <updated>2025-05-29T03:00:42.844Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,54 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>梦游</title>
+    <link href="http://example.com/posts/2.html"/>
+    <id>http://example.com/posts/2.html</id>
+    <published>2025-05-28T04:39:00.000Z</published>
+    <updated>2025-05-29T03:00:42.844Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><!-- 12:39 --><p>我睡了很久，有十几个小时，但起来依然很累，很困。但在梦中，我很满足，起来那一瞬间的不真实感也让我满足，这是我许久以来能感受到的最真实的东西。我能感到我完全与这世界分隔开，不再是混乱地相互交错，在那瞬间，我能够确定我自己的存在。但仅靠主观上的感受去确定存在就像在讲什么笑话，只是我在追求罢了，存留在惶恐中，依旧。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;&#92;assets&#92;css&#92;APlayer.min.css&quot;&gt;&lt;script src=&quot;&#92;assets&#92;js&#92;APlayer.min.js&quot; cla</summary>
+      
+    
+    
+    
+    <category term="胡思乱想" scheme="http://example.com/categories/%E8%83%A1%E6%80%9D%E4%B9%B1%E6%83%B3/"/>
+    
+    
+    <category term="胡思乱想" scheme="http://example.com/tags/%E8%83%A1%E6%80%9D%E4%B9%B1%E6%83%B3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>困惑</title>
+    <link href="http://example.com/posts/1.html"/>
+    <id>http://example.com/posts/1.html</id>
+    <published>2025-05-27T11:32:00.000Z</published>
+    <updated>2025-05-29T03:01:02.974Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>我总是有许多问题，但极少得到答案。</p><p>我也没有为得到答案而付出过什么，自我很小开始，我就不会去强求什么，但那并不等同于放弃。关于放弃，是在很久之后习得的。</p><p>我了解我自己，也看得清我自己，但我对“我自己”没有真切的感觉，好像我只是附身在这躯体上的幽灵，但实际上我们当然是一样的，我也只有“我”一个人存在着。我对我的发展历程持自然态度，因为结果不算太差，我很好地活下来了，因为有很多人爱我，但我不理解，也感受不到。</p><p>在意识到我缺失了什么之后，我就刻意地放弃以前的习惯，思考，想象，感受。在那地狱的时间段，当我触碰那些让我成为我的事务，信息，习惯，当我尝试成为我，我就会立刻遗忘。仿佛要将我抽离，但那似乎是不可逆转的过程，即使我刻意不去触碰，也会知道我在遗忘。之后，我将不再是我。</p><p>我持着这腐朽的躯体活到现在，在这数年中也依然没有找回我是谁。</p><p>我试图“杀死”自己，以为能重新来过，但现在我觉得就像在废墟上建房子。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;&#92;assets&#92;css&#92;APlayer.min.css&quot;&gt;&lt;script src=&quot;&#92;assets&#92;js&#92;APlayer.min.js&quot; cla</summary>
+      
+    
+    
+    
+    <category term="胡思乱想" scheme="http://example.com/categories/%E8%83%A1%E6%80%9D%E4%B9%B1%E6%83%B3/"/>
+    
+    
+    <category term="胡思乱想" scheme="http://example.com/tags/%E8%83%A1%E6%80%9D%E4%B9%B1%E6%83%B3/"/>
+    
+  </entry>
   
   <entry>
     <title>Hello</title>
