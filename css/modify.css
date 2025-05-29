@@ -88,7 +88,7 @@
   height: 150px !important;
   overflow: clip !important;
   margin: 0 auto;
-  text-align: center;     /* 新增：歌词文字居中 */
+  text-align: center !important;     /* 新增：歌词文字居中 */
   white-space: pre-line;
   display: block;         /* 明确为块级元素 */
 }
