@@ -80,13 +80,15 @@
 }
 .aplayer .aplayer-lrc p {
   font-size: 20px !important;
+  text-align: center;
 }
 .aplayer .aplayer-lrc {
   width: 500px;           /* 固定宽度 */
   max-width: 90%;         /* 响应式，防止溢出 */
-  height: 150px;
-  overflow: auto;
+  height: 150px !important;
+  overflow: auto !important;
   margin: 0 auto;
+  text-align: center;     /* 新增：歌词文字居中 */
   white-space: pre-line;
   display: block;         /* 明确为块级元素 */
 }
