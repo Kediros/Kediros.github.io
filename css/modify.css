@@ -82,13 +82,13 @@
   font-size: 20px !important;
   text-align: center;
 }
-.aplayer .aplayer-lrc {
-  width: 500px;           /* 固定宽度 */
-  max-width: 90%;         /* 响应式，防止溢出 */
-  height: 160px !important;
+/*.aplayer .aplayer-lrc {*/
+  /*width: 500px;           /* 固定宽度 */
+  /*max-width: 90%;         /* 响应式，防止溢出 */
+  /*height: 160px !important;
   overflow: clip !important;
   margin: 0 auto !important;
   text-align: center !important;     /* 新增：歌词文字居中 */
-  white-space: pre-line;
+  /*white-space: pre-line;
   display: block !important;         /* 明确为块级元素 */
-}
+/*}
