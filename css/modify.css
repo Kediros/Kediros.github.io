@@ -78,17 +78,85 @@
 	margin: 0;
 	display: inline-block
 }
-.aplayer .aplayer-lrc p {
-  font-size: 20px !important;
-  text-align: center;
+.aplayer {
+  position: fixed !important;
+  left: 20px !important;
+  bottom: 20px !important;
+  width: 400px;
+  min-width: 300px;
+  z-index: 9999;
 }
-/*.aplayer .aplayer-lrc {*/
-  /*width: 500px;           /* 固定宽度 */
-  /*max-width: 90%;         /* 响应式，防止溢出 */
-  /*height: 160px !important;
-  overflow: clip !important;
-  margin: 0 auto !important;
-  text-align: center !important;     /* 新增：歌词文字居中 */
-  /*white-space: pre-line;
-  display: block !important;         /* 明确为块级元素 */
-/*}
+
+/* 独立歌词显示 - 自适应分辨率 */
+#custom-lrc {
+  position: fixed;
+  left: 50%;
+  bottom: 40px;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 600px;
+  text-align: center;
+  font-size: 20px;
+  line-height: 2;
+  color: #333;
+  z-index: 9999;
+  pointer-events: none;
+  transition: font-size 0.3s ease, bottom 0.3s ease, width 0.3s ease;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+
+/* 歌词高亮当前行 */
+#custom-lrc .aplayer-lrc-current {
+  color: #49b1f5;
+  font-weight: bold;
+}
+
+/* 歌词容器滚动 */
+#custom-lrc .aplayer-lrc-contents {
+  overflow: hidden;
+}
+
+/* 歌词每行 */
+#custom-lrc p {
+  margin: 4px 0;
+  transition: all 0.3s ease;
+  opacity: 0.7;
+}
+
+#custom-lrc .aplayer-lrc-current {
+  opacity: 1;
+}
+
+/* 暗色模式歌词颜色 */
+[data-theme='dark'] #custom-lrc {
+  color: #eee;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+[data-theme='dark'] #custom-lrc .aplayer-lrc-current {
+  color: #66b1ff;
+}
+
+/* 小屏幕歌词适配 */
+@media screen and (max-width: 480px) {
+  #custom-lrc {
+    width: 95%;
+    max-width: 95%;
+    font-size: 14px;
+    bottom: 60px;
+    line-height: 1.6;
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  #custom-lrc {
+    font-size: 16px;
+    bottom: 50px;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  #custom-lrc {
+    font-size: 18px;
+  }
+}
