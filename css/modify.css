@@ -159,9 +159,10 @@
    ======================================== */
 
 /* 收缩时：外层容器缩小到仅显示封面图 + miniswitcher */
+/* 封面图 90px + miniswitcher 18px = 108px，给 miniswitcher 留出空间避免重叠 */
 .aplayer.aplayer-fixed.aplayer-narrow {
-  width: 90px !important;
-  max-width: 90px !important;
+  width: 108px !important;
+  max-width: 108px !important;
 }
 
 /* 收缩时：body 自动跟随父容器宽度（position:relative） */
@@ -209,9 +210,10 @@
     padding: 8px 5px 0 !important;
   }
   /* 小屏幕收缩模式 */
+  /* 封面图 70px + miniswitcher 18px = 88px */
   .aplayer.aplayer-fixed.aplayer-narrow {
-    width: 70px !important;
-    max-width: 70px !important;
+    width: 88px !important;
+    max-width: 88px !important;
   }
   .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
     width: 100% !important;
@@ -235,9 +237,10 @@
     bottom: auto !important;
   }
   /* 极小屏幕收缩模式 */
+  /* 封面图 66px + miniswitcher 18px = 84px */
   .aplayer.aplayer-fixed.aplayer-narrow {
-    width: 66px !important;
-    max-width: 66px !important;
+    width: 84px !important;
+    max-width: 84px !important;
   }
   .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
     width: 100% !important;
