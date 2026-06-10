@@ -3,7 +3,7 @@
  * 功能：
  * 1. 播放状态持久化（localStorage 保存当前歌曲、播放进度、播放模式）
  * 2. 页面刷新/跳转后恢复播放状态
- * 3. Pjax 跳转时保持播放不中断
+ * 3. Pjax 跳转时保持播放不中断（解决 Meting 重新创建实例导致音乐停止的问题）
  * 4. 歌词自适应分辨率
  * 5. 歌词独立显示在页面中央底部
  */
@@ -306,6 +306,148 @@
   }
 
   /**
+   * 修补 loadMeting 函数，使其跳过带有 .no-destroy 类的固定播放器
+   * 这样 Pjax 导航时 Meting 不会销毁和重建固定播放器，音乐不会中断
+   *
+   * 原理：
+   * Meting.js 的 loadMeting() 会：
+   * 1. 遍历内部局部 aplayers 数组，调用 destroy() 销毁所有实例
+   * 2. 清空内部数组
+   * 3. 查询 DOM 中所有 .aplayer 元素（返回静态 NodeList 快照）
+   * 4. 遍历 NodeList，对每个元素发起 XHR 请求获取歌曲数据
+   * 5. XHR 完成后创建新 APlayer 实例（异步）
+   *
+   * 修补策略：
+   * - Patch 受保护播放器的 destroy 方法为空操作，防止 Meting 通过内部数组销毁它
+   * - 从 window.aplayers 中临时移除受保护播放器，防止新实例的 mutex 暂停它
+   * - 清空受保护容器上的 data-id 和 data-url 属性，这样即使 Meting 的 NodeList
+   *   中包含了该容器，也会因为缺少 data-id/data-url 而跳过处理（不会创建新实例）
+   * - 调用原始 loadMeting 后，恢复所有属性和方法
+   */
+  function patchLoadMeting () {
+    if (typeof window.loadMeting !== 'function') return
+
+    const originalLoadMeting = window.loadMeting
+
+    window.loadMeting = function () {
+      // ---- 步骤1: 收集受保护的播放器及其容器 ----
+      const protectedPlayers = []
+      const protectedContainers = []
+
+      // 从 window.aplayers 中找出受保护的播放器实例
+      const aplayers = window.aplayers
+      if (aplayers && aplayers.length > 0) {
+        for (let i = 0; i < aplayers.length; i++) {
+          const p = aplayers[i]
+          if (p.container && p.container.classList && p.container.classList.contains('no-destroy')) {
+            protectedPlayers.push(p)
+          }
+        }
+      }
+
+      // 从 DOM 中找出受保护的容器
+      const containers = document.querySelectorAll('.aplayer.no-destroy')
+      for (let i = 0; i < containers.length; i++) {
+        protectedContainers.push(containers[i])
+      }
+
+      // ---- 步骤2: Patch destroy 方法为空操作 ----
+      const originalDestroyMap = []
+      for (let i = 0; i < protectedPlayers.length; i++) {
+        const p = protectedPlayers[i]
+        if (p.destroy) {
+          originalDestroyMap.push({ player: p, destroy: p.destroy })
+          p.destroy = function () {
+            // 空操作：不销毁固定播放器，保持音频播放
+          }
+        }
+      }
+
+      // ---- 步骤3: 从 window.aplayers 中临时移除受保护播放器 ----
+      // 防止新实例的 mutex 机制暂停它们
+      if (window.aplayers && protectedPlayers.length > 0) {
+        for (let i = 0; i < protectedPlayers.length; i++) {
+          const idx = window.aplayers.indexOf(protectedPlayers[i])
+          if (idx !== -1) {
+            window.aplayers.splice(idx, 1)
+          }
+        }
+      }
+
+      // ---- 步骤4: 保存并清空受保护容器的 data-id 和 data-url ----
+      // Meting 的 NodeList 快照虽然包含了这些容器，但循环体中会读取
+      // dataset.id 和 dataset.url，如果为空则跳过处理
+      const originalDataAttrs = []
+      for (let i = 0; i < protectedContainers.length; i++) {
+        const el = protectedContainers[i]
+        originalDataAttrs.push({
+          el: el,
+          id: el.dataset.id,
+          url: el.dataset.url
+        })
+        // 清空 data-id 和 data-url，让 Meting 跳过这个容器
+        delete el.dataset.id
+        delete el.dataset.url
+      }
+
+      // ---- 步骤5: 调用原始 loadMeting ----
+      // 此时受保护播放器：
+      //   - destroy 是空操作（不会被销毁）
+      //   - 不在 window.aplayers 中（不会被 mutex 暂停）
+      //   - data-id/data-url 被清空（Meting 不会为它创建新实例）
+      originalLoadMeting()
+
+      // ---- 步骤6: 恢复受保护容器的 data-id 和 data-url ----
+      for (let i = 0; i < originalDataAttrs.length; i++) {
+        const item = originalDataAttrs[i]
+        if (item.id !== undefined) {
+          item.el.dataset.id = item.id
+        }
+        if (item.url !== undefined) {
+          item.el.dataset.url = item.url
+        }
+      }
+
+      // ---- 步骤7: 恢复 destroy 方法 ----
+      for (let i = 0; i < originalDestroyMap.length; i++) {
+        originalDestroyMap[i].player.destroy = originalDestroyMap[i].destroy
+      }
+
+      // ---- 步骤8: 将受保护播放器恢复回 window.aplayers ----
+      if (window.aplayers) {
+        for (let i = 0; i < protectedPlayers.length; i++) {
+          const p = protectedPlayers[i]
+          if (window.aplayers.indexOf(p) === -1) {
+            window.aplayers.push(p)
+          }
+        }
+      }
+
+      // ---- 步骤9: 如果播放器被暂停，恢复播放 ----
+      for (let i = 0; i < protectedPlayers.length; i++) {
+        const p = protectedPlayers[i]
+        if (p.paused) {
+          const savedState = getSavedState()
+          if (savedState) {
+            if (savedState.volume !== undefined && p.audio) {
+              p.volume(savedState.volume, true)
+            }
+            // 延迟恢复，等待页面完全加载
+            setTimeout(function () {
+              try {
+                if (savedState.currentTime > 0) {
+                  p.seek(savedState.currentTime)
+                }
+                p.play()
+              } catch (e) { /* ignore */ }
+            }, 800)
+          }
+        }
+      }
+    }
+  }
+
+  /**
    * 主初始化函数
    */
   function init () {
@@ -316,6 +458,9 @@
     window.addEventListener('resize', function () {
       adjustLrcPosition()
     })
+
+    // 修补 loadMeting，保护固定播放器
+    patchLoadMeting()
 
     // 监听 APlayer 创建完成
     const checkPlayer = setInterval(function () {
