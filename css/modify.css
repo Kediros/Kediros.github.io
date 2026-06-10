@@ -102,7 +102,8 @@
 /* .aplayer-body 使用 position:relative，在父容器内正常流动 */
 /* 父容器 .aplayer.aplayer-fixed 已经是 position:fixed，所以整体定位不变 */
 /* 这样 .aplayer-miniswitcher（position:absolute 相对于 body）在 narrow 模式下能正确对齐 */
-/* 注意：必须保留 padding-right:18px 为 .aplayer-miniswitcher（展开/收缩按钮）留出空间 */
+/* 注意：展开模式下保留 padding-right:18px 为 .aplayer-miniswitcher 留出空间 */
+/* 收缩模式下 padding-right:0，让 miniswitcher 紧贴封面图右侧，避免空白间隙 */
 .aplayer.aplayer-fixed .aplayer-body {
   position: relative !important;
   left: auto !important;
@@ -116,8 +117,6 @@
   z-index: 99;
   background: #fff;
   transition: all 0.3s ease;
-  /* 清除浮动，确保 body 包含封面图，使 miniswitcher 高度正确 */
-  overflow: hidden;
 }
 
 /* 确保封面图区域有足够大小显示 loading 图标 */
@@ -153,6 +152,16 @@
   display: none !important;
 }
 
+/* 修复歌曲列表上方空白问题 */
+/* APlayer 默认在 fixed 模式下给 .aplayer-list 添加 margin-bottom:65px，
+   这是为旧版 position:fixed body 设计的（body 与列表重叠）。
+   现在 body 使用 position:relative，此 margin 会导致列表下方出现多余空白。
+   同时移除 border 让列表与 body 无缝衔接。 */
+.aplayer.aplayer-fixed .aplayer-list {
+  margin-bottom: 0 !important;
+  border: none !important;
+}
+
 /* ========================================
    APlayer 收缩（narrow）模式
    点击 miniswitcher 按钮时切换 .aplayer-narrow 类
@@ -168,10 +177,11 @@
 /* 收缩时：body 自动跟随父容器宽度（position:relative） */
 /* 注意：APlayer 默认有 .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body { width:66px!important; } */
 /* 我们使用更高特异性的选择器来覆盖它 */
+/* padding-right:0 让 miniswitcher 紧贴封面图右侧，避免 padding 区域产生空白间隙 */
 .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
   width: 100% !important;
   max-width: 100% !important;
-  padding-right: 18px !important;
+  padding-right: 0 !important;
 }
 
 /* 收缩时：封面图保持 90x90 */
@@ -218,6 +228,7 @@
   .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
     width: 100% !important;
     max-width: 100% !important;
+    padding-right: 0 !important;
   }
   .aplayer.aplayer-fixed.aplayer-narrow .aplayer-pic {
     width: 70px !important;
@@ -245,6 +256,7 @@
   .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
     width: 100% !important;
     max-width: 100% !important;
+    padding-right: 0 !important;
   }
   .aplayer.aplayer-fixed.aplayer-narrow .aplayer-pic {
     width: 66px !important;
