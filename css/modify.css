@@ -99,13 +99,14 @@
 }
 
 /* .aplayer-body 保持 position:fixed，但位置跟随外层容器 */
+/* 注意：必须保留 padding-right:18px 为 .aplayer-miniswitcher（展开/收缩按钮）留出空间 */
 .aplayer.aplayer-fixed .aplayer-body {
   position: fixed !important;
   left: 20px !important;
   bottom: 20px !important;
   width: 400px !important;
   max-width: 400px !important;
-  padding-right: 0 !important;
+  padding-right: 18px !important;
   box-shadow: none !important;
   /* 移除 APlayer 默认的 right:0 */
   right: auto !important;
