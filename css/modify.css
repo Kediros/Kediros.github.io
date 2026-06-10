@@ -177,8 +177,8 @@
 
 /* 收缩时：body 自动跟随父容器宽度（position:relative） */
 /* 注意：APlayer 默认有 .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body { width:66px!important; } */
-/* 我们使用更高特异性的选择器来覆盖它 */
-.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+/* 使用 div.aplayer 提高特异性，确保覆盖 APlayer 默认的 width:66px */
+div.aplayer.aplayer-fixed.aplayer-narrow div.aplayer-body {
   width: 100% !important;
   max-width: 100% !important;
   padding-right: 0 !important;
@@ -225,7 +225,7 @@
     width: 88px !important;
     max-width: 88px !important;
   }
-  .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+  div.aplayer.aplayer-fixed.aplayer-narrow div.aplayer-body {
     width: 100% !important;
     max-width: 100% !important;
     padding-right: 0 !important;
@@ -256,7 +256,7 @@
     width: 84px !important;
     max-width: 84px !important;
   }
-  .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+  div.aplayer.aplayer-fixed.aplayer-narrow div.aplayer-body {
     width: 100% !important;
     max-width: 100% !important;
     padding-right: 0 !important;
