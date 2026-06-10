@@ -78,6 +78,7 @@
 	margin: 0;
 	display: inline-block
 }
+/* APlayer 固定定位播放器 - 左下角显示 */
 .aplayer {
   position: fixed !important;
   left: 20px !important;
@@ -85,6 +86,65 @@
   width: 400px;
   min-width: 300px;
   z-index: 9999;
+  margin: 0 !important;
+}
+
+/* 确保封面图区域有足够大小显示 loading 图标 */
+.aplayer .aplayer-pic {
+  width: 90px !important;
+  height: 90px !important;
+  position: relative;
+}
+
+/* loading 图标在封面图区域居中显示 */
+.aplayer .aplayer-pic .aplayer-loading-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 32px;
+  height: 32px;
+  z-index: 10;
+}
+
+/* 播放器信息区域适配 */
+.aplayer .aplayer-info {
+  margin-left: 90px !important;
+  height: 90px !important;
+  padding: 10px 7px 0 !important;
+}
+
+/* 歌词区域在非 fixed 模式下显示 */
+.aplayer .aplayer-lrc {
+  display: block !important;
+}
+
+/* 小屏幕适配 */
+@media screen and (max-width: 768px) {
+  .aplayer {
+    width: 300px !important;
+    min-width: 250px !important;
+    left: 10px !important;
+    bottom: 10px !important;
+  }
+  .aplayer .aplayer-pic {
+    width: 70px !important;
+    height: 70px !important;
+  }
+  .aplayer .aplayer-info {
+    margin-left: 70px !important;
+    height: 70px !important;
+    padding: 8px 5px 0 !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .aplayer {
+    width: calc(100% - 20px) !important;
+    min-width: 200px !important;
+    left: 10px !important;
+    bottom: 10px !important;
+  }
 }
 
 /* 独立歌词显示 - 自适应分辨率 */
