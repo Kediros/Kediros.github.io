@@ -99,23 +99,25 @@
   right: auto !important;
 }
 
-/* .aplayer-body 保持 position:fixed，但位置跟随外层容器 */
+/* .aplayer-body 使用 position:relative，在父容器内正常流动 */
+/* 父容器 .aplayer.aplayer-fixed 已经是 position:fixed，所以整体定位不变 */
+/* 这样 .aplayer-miniswitcher（position:absolute 相对于 body）在 narrow 模式下能正确对齐 */
 /* 注意：必须保留 padding-right:18px 为 .aplayer-miniswitcher（展开/收缩按钮）留出空间 */
 .aplayer.aplayer-fixed .aplayer-body {
-  position: fixed !important;
-  left: 20px !important;
-  bottom: 20px !important;
-  width: 400px !important;
-  max-width: 400px !important;
+  position: relative !important;
+  left: auto !important;
+  bottom: auto !important;
+  width: 100% !important;
+  max-width: 100% !important;
   padding-right: 18px !important;
   box-shadow: none !important;
-  /* 移除 APlayer 默认的 right:0 */
   right: auto !important;
-  /* 确保 body 不超出容器边界 */
   margin: 0 !important;
   z-index: 99;
   background: #fff;
   transition: all 0.3s ease;
+  /* 清除浮动，确保 body 包含封面图，使 miniswitcher 高度正确 */
+  overflow: hidden;
 }
 
 /* 确保封面图区域有足够大小显示 loading 图标 */
@@ -162,10 +164,12 @@
   max-width: 90px !important;
 }
 
-/* 收缩时：body 同步缩小 */
+/* 收缩时：body 自动跟随父容器宽度（position:relative） */
+/* 注意：APlayer 默认有 .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body { width:66px!important; } */
+/* 我们使用更高特异性的选择器来覆盖它 */
 .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
-  width: 90px !important;
-  max-width: 90px !important;
+  width: 100% !important;
+  max-width: 100% !important;
   padding-right: 18px !important;
 }
 
@@ -191,10 +195,9 @@
     bottom: 10px !important;
   }
   .aplayer.aplayer-fixed .aplayer-body {
-    width: 300px !important;
-    max-width: 300px !important;
-    left: 10px !important;
-    bottom: 10px !important;
+    /* body 跟随父容器宽度，不需要单独设置 width */
+    left: auto !important;
+    bottom: auto !important;
   }
   .aplayer.aplayer-fixed .aplayer-pic {
     width: 70px !important;
@@ -211,8 +214,8 @@
     max-width: 70px !important;
   }
   .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
-    width: 70px !important;
-    max-width: 70px !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
   .aplayer.aplayer-fixed.aplayer-narrow .aplayer-pic {
     width: 70px !important;
@@ -227,10 +230,9 @@
     bottom: 10px !important;
   }
   .aplayer.aplayer-fixed .aplayer-body {
-    width: calc(100% - 20px) !important;
-    max-width: calc(100% - 20px) !important;
-    left: 10px !important;
-    bottom: 10px !important;
+    /* body 跟随父容器宽度 */
+    left: auto !important;
+    bottom: auto !important;
   }
   /* 极小屏幕收缩模式 */
   .aplayer.aplayer-fixed.aplayer-narrow {
@@ -238,8 +240,8 @@
     max-width: 66px !important;
   }
   .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
-    width: 66px !important;
-    max-width: 66px !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
   .aplayer.aplayer-fixed.aplayer-narrow .aplayer-pic {
     width: 66px !important;
