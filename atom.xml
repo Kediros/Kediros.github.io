@@ -3,11 +3,11 @@
   <title>Kediros</title>
   
   <subtitle>沉溺在现实之中</subtitle>
-  <link href="https://kediros.github.io/project/atom.xml" rel="self"/>
+  <link href="https://kediros.github.io/atom.xml" rel="self"/>
   
-  <link href="https://kediros.github.io/project/"/>
+  <link href="https://kediros.github.io/"/>
   <updated>2025-05-29T03:00:42.844Z</updated>
-  <id>https://kediros.github.io/project/</id>
+  <id>https://kediros.github.io/</id>
   
   <author>
     <name>Kediros</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>梦游</title>
-    <link href="https://kediros.github.io/project/posts/2.html"/>
-    <id>https://kediros.github.io/project/posts/2.html</id>
+    <link href="https://kediros.github.io/posts/2.html"/>
+    <id>https://kediros.github.io/posts/2.html</id>
     <published>2025-05-28T04:39:00.000Z</published>
     <updated>2025-05-29T03:00:42.844Z</updated>
     
@@ -33,17 +33,17 @@
     
     
     
-    <category term="胡思乱想" scheme="https://kediros.github.io/project/categories/%E8%83%A1%E6%80%9D%E4%B9%B1%E6%83%B3/"/>
+    <category term="胡思乱想" scheme="https://kediros.github.io/categories/%E8%83%A1%E6%80%9D%E4%B9%B1%E6%83%B3/"/>
     
     
-    <category term="胡思乱想" scheme="https://kediros.github.io/project/tags/%E8%83%A1%E6%80%9D%E4%B9%B1%E6%83%B3/"/>
+    <category term="胡思乱想" scheme="https://kediros.github.io/tags/%E8%83%A1%E6%80%9D%E4%B9%B1%E6%83%B3/"/>
     
   </entry>
   
   <entry>
     <title>困惑</title>
-    <link href="https://kediros.github.io/project/posts/1.html"/>
-    <id>https://kediros.github.io/project/posts/1.html</id>
+    <link href="https://kediros.github.io/posts/1.html"/>
+    <id>https://kediros.github.io/posts/1.html</id>
     <published>2025-05-27T11:32:00.000Z</published>
     <updated>2025-05-29T03:01:02.974Z</updated>
     
@@ -57,17 +57,17 @@
     
     
     
-    <category term="胡思乱想" scheme="https://kediros.github.io/project/categories/%E8%83%A1%E6%80%9D%E4%B9%B1%E6%83%B3/"/>
+    <category term="胡思乱想" scheme="https://kediros.github.io/categories/%E8%83%A1%E6%80%9D%E4%B9%B1%E6%83%B3/"/>
     
     
-    <category term="胡思乱想" scheme="https://kediros.github.io/project/tags/%E8%83%A1%E6%80%9D%E4%B9%B1%E6%83%B3/"/>
+    <category term="胡思乱想" scheme="https://kediros.github.io/tags/%E8%83%A1%E6%80%9D%E4%B9%B1%E6%83%B3/"/>
     
   </entry>
   
   <entry>
     <title>Hello</title>
-    <link href="https://kediros.github.io/project/posts/0.html"/>
-    <id>https://kediros.github.io/project/posts/0.html</id>
+    <link href="https://kediros.github.io/posts/0.html"/>
+    <id>https://kediros.github.io/posts/0.html</id>
     <published>2023-12-23T02:00:00.000Z</published>
     <updated>2025-05-29T02:54:15.382Z</updated>
     
@@ -81,10 +81,10 @@
     
     
     
-    <category term="tset" scheme="https://kediros.github.io/project/categories/tset/"/>
+    <category term="tset" scheme="https://kediros.github.io/categories/tset/"/>
     
     
-    <category term="test" scheme="https://kediros.github.io/project/tags/test/"/>
+    <category term="test" scheme="https://kediros.github.io/tags/test/"/>
     
   </entry>
   

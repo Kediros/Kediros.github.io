@@ -325,20 +325,38 @@
    * - 调用原始 loadMeting 后，恢复所有属性和方法
    */
   function patchLoadMeting () {
-    if (typeof window.loadMeting !== 'function') return
+    if (typeof window.loadMeting !== 'function') {
+      // 如果 loadMeting 还没加载完成，等待它
+      // 因为 aplayer-manager.js 在 head 中加载，而 Meting.js 在 body 底部加载
+      var checkMeting = setInterval(function () {
+        if (typeof window.loadMeting === 'function') {
+          clearInterval(checkMeting)
+          doPatchLoadMeting()
+        }
+      }, 100)
+      // 30秒超时停止检查
+      setTimeout(function () { clearInterval(checkMeting) }, 30000)
+      return
+    }
+    doPatchLoadMeting()
+  }
 
-    const originalLoadMeting = window.loadMeting
+  /**
+   * 执行实际的 loadMeting 修补
+   */
+  function doPatchLoadMeting () {
+    var originalLoadMeting = window.loadMeting
 
     window.loadMeting = function () {
       // ---- 步骤1: 收集受保护的播放器及其容器 ----
-      const protectedPlayers = []
-      const protectedContainers = []
+      var protectedPlayers = []
+      var protectedContainers = []
 
       // 从 window.aplayers 中找出受保护的播放器实例
-      const aplayers = window.aplayers
+      var aplayers = window.aplayers
       if (aplayers && aplayers.length > 0) {
-        for (let i = 0; i < aplayers.length; i++) {
-          const p = aplayers[i]
+        for (var i = 0; i < aplayers.length; i++) {
+          var p = aplayers[i]
           if (p.container && p.container.classList && p.container.classList.contains('no-destroy')) {
             protectedPlayers.push(p)
           }
@@ -346,15 +364,15 @@
       }
 
       // 从 DOM 中找出受保护的容器
-      const containers = document.querySelectorAll('.aplayer.no-destroy')
-      for (let i = 0; i < containers.length; i++) {
+      var containers = document.querySelectorAll('.aplayer.no-destroy')
+      for (var i = 0; i < containers.length; i++) {
         protectedContainers.push(containers[i])
       }
 
       // ---- 步骤2: Patch destroy 方法为空操作 ----
-      const originalDestroyMap = []
-      for (let i = 0; i < protectedPlayers.length; i++) {
-        const p = protectedPlayers[i]
+      var originalDestroyMap = []
+      for (var i = 0; i < protectedPlayers.length; i++) {
+        var p = protectedPlayers[i]
         if (p.destroy) {
           originalDestroyMap.push({ player: p, destroy: p.destroy })
           p.destroy = function () {
@@ -366,8 +384,8 @@
       // ---- 步骤3: 从 window.aplayers 中临时移除受保护播放器 ----
       // 防止新实例的 mutex 机制暂停它们
       if (window.aplayers && protectedPlayers.length > 0) {
-        for (let i = 0; i < protectedPlayers.length; i++) {
-          const idx = window.aplayers.indexOf(protectedPlayers[i])
+        for (var i = 0; i < protectedPlayers.length; i++) {
+          var idx = window.aplayers.indexOf(protectedPlayers[i])
           if (idx !== -1) {
             window.aplayers.splice(idx, 1)
           }
@@ -375,11 +393,9 @@
       }
 
       // ---- 步骤4: 保存并清空受保护容器的 data-id 和 data-url ----
-      // Meting 的 NodeList 快照虽然包含了这些容器，但循环体中会读取
-      // dataset.id 和 dataset.url，如果为空则跳过处理
-      const originalDataAttrs = []
-      for (let i = 0; i < protectedContainers.length; i++) {
-        const el = protectedContainers[i]
+      var originalDataAttrs = []
+      for (var i = 0; i < protectedContainers.length; i++) {
+        var el = protectedContainers[i]
         originalDataAttrs.push({
           el: el,
           id: el.dataset.id,
@@ -391,15 +407,11 @@
       }
 
       // ---- 步骤5: 调用原始 loadMeting ----
-      // 此时受保护播放器：
-      //   - destroy 是空操作（不会被销毁）
-      //   - 不在 window.aplayers 中（不会被 mutex 暂停）
-      //   - data-id/data-url 被清空（Meting 不会为它创建新实例）
       originalLoadMeting()
 
       // ---- 步骤6: 恢复受保护容器的 data-id 和 data-url ----
-      for (let i = 0; i < originalDataAttrs.length; i++) {
-        const item = originalDataAttrs[i]
+      for (var i = 0; i < originalDataAttrs.length; i++) {
+        var item = originalDataAttrs[i]
         if (item.id !== undefined) {
           item.el.dataset.id = item.id
         }
@@ -409,14 +421,14 @@
       }
 
       // ---- 步骤7: 恢复 destroy 方法 ----
-      for (let i = 0; i < originalDestroyMap.length; i++) {
+      for (var i = 0; i < originalDestroyMap.length; i++) {
         originalDestroyMap[i].player.destroy = originalDestroyMap[i].destroy
       }
 
       // ---- 步骤8: 将受保护播放器恢复回 window.aplayers ----
       if (window.aplayers) {
-        for (let i = 0; i < protectedPlayers.length; i++) {
-          const p = protectedPlayers[i]
+        for (var i = 0; i < protectedPlayers.length; i++) {
+          var p = protectedPlayers[i]
           if (window.aplayers.indexOf(p) === -1) {
             window.aplayers.push(p)
           }
@@ -424,10 +436,10 @@
       }
 
       // ---- 步骤9: 如果播放器被暂停，恢复播放 ----
-      for (let i = 0; i < protectedPlayers.length; i++) {
-        const p = protectedPlayers[i]
+      for (var i = 0; i < protectedPlayers.length; i++) {
+        var p = protectedPlayers[i]
         if (p.paused) {
-          const savedState = getSavedState()
+          var savedState = getSavedState()
           if (savedState) {
             if (savedState.volume !== undefined && p.audio) {
               p.volume(savedState.volume, true)
@@ -500,18 +512,48 @@
     document.addEventListener('DOMContentLoaded', init)
   }
 
-  // Pjax 完成后重新初始化歌词同步
-  document.addEventListener('pjax:complete', function () {
+  /**
+   * Pjax 完成后处理函数
+   * 1. 重新创建歌词元素（Pjax 会替换 body 内容）
+   * 2. 重新绑定播放器事件
+   * 3. 重新初始化歌词同步
+   * 4. 恢复播放状态（如果播放器被意外暂停）
+   */
+  function onPjaxComplete () {
     createLrcElement()
     adjustLrcPosition()
 
     const players = window.aplayers
     if (players && players.length > 0) {
-      const player = players[0]
-      bindPlayerEvents(player)
-      initLrcSync()
+      // 找到固定播放器（受保护的）
+      for (let i = 0; i < players.length; i++) {
+        const player = players[i]
+        if (player.options.fixed || (player.container && player.container.classList.contains('no-destroy'))) {
+          bindPlayerEvents(player)
+          initLrcSync()
+
+          // 如果播放器被暂停，尝试恢复
+          if (player.paused) {
+            const savedState = getSavedState()
+            if (savedState) {
+              setTimeout(function () {
+                try {
+                  if (savedState.currentTime > 0) {
+                    player.seek(savedState.currentTime)
+                  }
+                  player.play()
+                } catch (e) { /* ignore */ }
+              }, 500)
+            }
+          }
+          break
+        }
+      }
     }
-  })
+  }
+
+  // Pjax 完成后重新初始化
+  document.addEventListener('pjax:complete', onPjaxComplete)
 
   // 页面可见性变化时保存状态（用户切换标签页时）
   document.addEventListener('visibilitychange', function () {
