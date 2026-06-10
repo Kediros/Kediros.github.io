@@ -79,25 +79,37 @@
 	display: inline-block
 }
 /* APlayer 固定定位播放器 - 左下角显示 */
-.aplayer {
+/* 使用 data-fixed="true" 时，APlayer 会添加 .aplayer-fixed 类 */
+.aplayer.aplayer-fixed {
   position: fixed !important;
   left: 20px !important;
   bottom: 20px !important;
   width: 400px;
-  min-width: 300px;
+  max-width: 400px;
   z-index: 9999;
   margin: 0 !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  border-radius: 2px;
+}
+
+/* 覆盖 APlayer fixed 模式下的 .aplayer-body 定位 */
+.aplayer.aplayer-fixed .aplayer-body {
+  position: static !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  padding-right: 0 !important;
+  box-shadow: none !important;
 }
 
 /* 确保封面图区域有足够大小显示 loading 图标 */
-.aplayer .aplayer-pic {
+.aplayer.aplayer-fixed .aplayer-pic {
   width: 90px !important;
   height: 90px !important;
   position: relative;
 }
 
 /* loading 图标在封面图区域居中显示 */
-.aplayer .aplayer-pic .aplayer-loading-icon {
+.aplayer.aplayer-fixed .aplayer-pic .aplayer-loading-icon {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -107,31 +119,32 @@
   z-index: 10;
 }
 
-/* 播放器信息区域适配 */
-.aplayer .aplayer-info {
+/* 播放器信息区域适配 fixed 模式 */
+.aplayer.aplayer-fixed .aplayer-info {
   margin-left: 90px !important;
   height: 90px !important;
   padding: 10px 7px 0 !important;
+  border-top: none !important;
+  transform: none !important;
 }
 
-/* 歌词区域在非 fixed 模式下显示 */
-.aplayer .aplayer-lrc {
-  display: block !important;
+/* 隐藏 APlayer 自带的歌词（使用自定义歌词 #custom-lrc） */
+.aplayer.aplayer-fixed .aplayer-lrc {
+  display: none !important;
 }
 
 /* 小屏幕适配 */
 @media screen and (max-width: 768px) {
-  .aplayer {
+  .aplayer.aplayer-fixed {
     width: 300px !important;
-    min-width: 250px !important;
     left: 10px !important;
     bottom: 10px !important;
   }
-  .aplayer .aplayer-pic {
+  .aplayer.aplayer-fixed .aplayer-pic {
     width: 70px !important;
     height: 70px !important;
   }
-  .aplayer .aplayer-info {
+  .aplayer.aplayer-fixed .aplayer-info {
     margin-left: 70px !important;
     height: 70px !important;
     padding: 8px 5px 0 !important;
@@ -139,9 +152,8 @@
 }
 
 @media screen and (max-width: 480px) {
-  .aplayer {
+  .aplayer.aplayer-fixed {
     width: calc(100% - 20px) !important;
-    min-width: 200px !important;
     left: 10px !important;
     bottom: 10px !important;
   }
