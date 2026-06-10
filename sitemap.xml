@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://kediros.github.io/Kediros.github.io/posts/1.html</loc>
+    <loc>https://kediros.github.io/posts/1.html</loc>
     
     <lastmod>2025-05-29</lastmod>
     
@@ -11,7 +11,7 @@
   </url>
   
   <url>
-    <loc>https://kediros.github.io/Kediros.github.io/posts/2.html</loc>
+    <loc>https://kediros.github.io/posts/2.html</loc>
     
     <lastmod>2025-05-29</lastmod>
     
@@ -20,7 +20,7 @@
   </url>
   
   <url>
-    <loc>https://kediros.github.io/Kediros.github.io/posts/0.html</loc>
+    <loc>https://kediros.github.io/posts/0.html</loc>
     
     <lastmod>2025-05-29</lastmod>
     
@@ -29,7 +29,7 @@
   </url>
   
   <url>
-    <loc>https://kediros.github.io/Kediros.github.io/categories/index.html</loc>
+    <loc>https://kediros.github.io/categories/index.html</loc>
     
     <lastmod>2023-12-23</lastmod>
     
@@ -38,7 +38,7 @@
   </url>
   
   <url>
-    <loc>https://kediros.github.io/Kediros.github.io/link/index.html</loc>
+    <loc>https://kediros.github.io/link/index.html</loc>
     
     <lastmod>2023-12-23</lastmod>
     
@@ -47,7 +47,7 @@
   </url>
   
   <url>
-    <loc>https://kediros.github.io/Kediros.github.io/tags/index.html</loc>
+    <loc>https://kediros.github.io/tags/index.html</loc>
     
     <lastmod>2023-12-23</lastmod>
     
@@ -57,7 +57,7 @@
   
 
   <url>
-    <loc>https://kediros.github.io/Kediros.github.io</loc>
+    <loc>https://kediros.github.io/</loc>
     <lastmod>2026-06-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -65,14 +65,14 @@
 
   
   <url>
-    <loc>https://kediros.github.io/Kediros.github.io/tags/test/</loc>
+    <loc>https://kediros.github.io/tags/test/</loc>
     <lastmod>2026-06-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://kediros.github.io/Kediros.github.io/tags/%E8%83%A1%E6%80%9D%E4%B9%B1%E6%83%B3/</loc>
+    <loc>https://kediros.github.io/tags/%E8%83%A1%E6%80%9D%E4%B9%B1%E6%83%B3/</loc>
     <lastmod>2026-06-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -81,14 +81,14 @@
 
   
   <url>
-    <loc>https://kediros.github.io/Kediros.github.io/categories/tset/</loc>
+    <loc>https://kediros.github.io/categories/tset/</loc>
     <lastmod>2026-06-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://kediros.github.io/Kediros.github.io/categories/%E8%83%A1%E6%80%9D%E4%B9%B1%E6%83%B3/</loc>
+    <loc>https://kediros.github.io/categories/%E8%83%A1%E6%80%9D%E4%B9%B1%E6%83%B3/</loc>
     <lastmod>2026-06-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
