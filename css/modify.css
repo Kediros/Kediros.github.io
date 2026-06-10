@@ -101,16 +101,16 @@
 
 /* .aplayer-body 使用 position:relative，在父容器内正常流动 */
 /* 父容器 .aplayer.aplayer-fixed 已经是 position:fixed，所以整体定位不变 */
-/* 这样 .aplayer-miniswitcher（position:absolute 相对于 body）在 narrow 模式下能正确对齐 */
-/* 注意：展开模式下保留 padding-right:18px 为 .aplayer-miniswitcher 留出空间 */
-/* 收缩模式下 padding-right:0，让 miniswitcher 紧贴封面图右侧，避免空白间隙 */
+/* 这样 .aplayer-miniswitcher（position:absolute 相对于 body）能正确对齐 */
+/* padding-right:0 让 miniswitcher 紧贴右侧边缘，无空白间隙 */
+/* .aplayer-info 使用 padding-right:18px 避免内容被 miniswitcher 遮挡 */
 .aplayer.aplayer-fixed .aplayer-body {
   position: relative !important;
   left: auto !important;
   bottom: auto !important;
   width: 100% !important;
   max-width: 100% !important;
-  padding-right: 18px !important;
+  padding-right: 0 !important;
   box-shadow: none !important;
   right: auto !important;
   margin: 0 !important;
@@ -139,10 +139,11 @@
 }
 
 /* 播放器信息区域 - 展开状态 */
+/* padding-right:25px 为右侧的 miniswitcher（18px）和控制按钮留出空间 */
 .aplayer.aplayer-fixed .aplayer-info {
   margin-left: 90px !important;
   height: 90px !important;
-  padding: 10px 7px 0 !important;
+  padding: 10px 25px 0 7px !important;
   border-top: none !important;
   /* 不使用 transform: none，让 narrow 模式的 scaleX(0) 能正常隐藏 info */
 }
@@ -177,7 +178,6 @@
 /* 收缩时：body 自动跟随父容器宽度（position:relative） */
 /* 注意：APlayer 默认有 .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body { width:66px!important; } */
 /* 我们使用更高特异性的选择器来覆盖它 */
-/* padding-right:0 让 miniswitcher 紧贴封面图右侧，避免 padding 区域产生空白间隙 */
 .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
   width: 100% !important;
   max-width: 100% !important;
@@ -217,7 +217,7 @@
   .aplayer.aplayer-fixed .aplayer-info {
     margin-left: 70px !important;
     height: 70px !important;
-    padding: 8px 5px 0 !important;
+    padding: 8px 25px 0 5px !important;
   }
   /* 小屏幕收缩模式 */
   /* 封面图 70px + miniswitcher 18px = 88px */
@@ -246,6 +246,9 @@
     /* body 跟随父容器宽度 */
     left: auto !important;
     bottom: auto !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-info {
+    padding: 8px 25px 0 5px !important;
   }
   /* 极小屏幕收缩模式 */
   /* 封面图 66px + miniswitcher 18px = 84px */
