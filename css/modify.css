@@ -78,8 +78,12 @@
 	margin: 0;
 	display: inline-block
 }
-/* APlayer 固定定位播放器 - 左下角显示 */
-/* 使用 data-fixed="true" 时，APlayer 会添加 .aplayer-fixed 类 */
+/* ========================================
+   APlayer 固定定位播放器 - 左下角显示
+   使用 data-fixed="true" 时，APlayer 会添加 .aplayer-fixed 类
+   ======================================== */
+
+/* 外层容器：控制播放器在屏幕上的位置 */
 .aplayer.aplayer-fixed {
   position: fixed !important;
   left: 20px !important;
@@ -90,15 +94,26 @@
   margin: 0 !important;
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
   border-radius: 2px;
+  /* 移除 APlayer 默认的 right:0，让播放器从左边缘定位 */
+  right: auto !important;
 }
 
-/* 覆盖 APlayer fixed 模式下的 .aplayer-body 定位 */
+/* .aplayer-body 保持 position:fixed，但位置跟随外层容器 */
 .aplayer.aplayer-fixed .aplayer-body {
-  position: static !important;
-  width: 100% !important;
-  max-width: 100% !important;
+  position: fixed !important;
+  left: 20px !important;
+  bottom: 20px !important;
+  width: 400px !important;
+  max-width: 400px !important;
   padding-right: 0 !important;
   box-shadow: none !important;
+  /* 移除 APlayer 默认的 right:0 */
+  right: auto !important;
+  /* 确保 body 不超出容器边界 */
+  margin: 0 !important;
+  z-index: 99;
+  background: #fff;
+  transition: all 0.3s ease;
 }
 
 /* 确保封面图区域有足够大小显示 loading 图标 */
@@ -106,6 +121,7 @@
   width: 90px !important;
   height: 90px !important;
   position: relative;
+  float: left;
 }
 
 /* loading 图标在封面图区域居中显示 */
@@ -119,7 +135,7 @@
   z-index: 10;
 }
 
-/* 播放器信息区域适配 fixed 模式 */
+/* 播放器信息区域 */
 .aplayer.aplayer-fixed .aplayer-info {
   margin-left: 90px !important;
   height: 90px !important;
@@ -140,6 +156,12 @@
     left: 10px !important;
     bottom: 10px !important;
   }
+  .aplayer.aplayer-fixed .aplayer-body {
+    width: 300px !important;
+    max-width: 300px !important;
+    left: 10px !important;
+    bottom: 10px !important;
+  }
   .aplayer.aplayer-fixed .aplayer-pic {
     width: 70px !important;
     height: 70px !important;
@@ -157,24 +179,47 @@
     left: 10px !important;
     bottom: 10px !important;
   }
+  .aplayer.aplayer-fixed .aplayer-body {
+    width: calc(100% - 20px) !important;
+    max-width: calc(100% - 20px) !important;
+    left: 10px !important;
+    bottom: 10px !important;
+  }
 }
 
-/* 独立歌词显示 - 自适应分辨率 */
+/* ========================================
+   独立歌词显示 - 紧凑、半透明、不遮挡阅读
+   ======================================== */
 #custom-lrc {
   position: fixed;
   left: 50%;
-  bottom: 40px;
+  bottom: 130px;
   transform: translateX(-50%);
-  width: 90%;
-  max-width: 600px;
+  width: auto;
+  max-width: 480px;
+  min-width: 200px;
   text-align: center;
-  font-size: 20px;
-  line-height: 2;
+  font-size: 15px;
+  line-height: 1.6;
   color: #333;
   z-index: 9999;
   pointer-events: none;
-  transition: font-size 0.3s ease, bottom 0.3s ease, width 0.3s ease;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
+  /* 半透明毛玻璃背景，减少对页面内容的遮挡 */
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 8px;
+  padding: 6px 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  /* 限制最大高度，超出滚动 */
+  max-height: 80px;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+#custom-lrc::-webkit-scrollbar {
+  display: none;
 }
 
 /* 歌词高亮当前行 */
@@ -190,9 +235,12 @@
 
 /* 歌词每行 */
 #custom-lrc p {
-  margin: 4px 0;
+  margin: 2px 0;
   transition: all 0.3s ease;
-  opacity: 0.7;
+  opacity: 0.6;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 #custom-lrc .aplayer-lrc-current {
@@ -202,7 +250,10 @@
 /* 暗色模式歌词颜色 */
 [data-theme='dark'] #custom-lrc {
   color: #eee;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
 [data-theme='dark'] #custom-lrc .aplayer-lrc-current {
@@ -212,23 +263,27 @@
 /* 小屏幕歌词适配 */
 @media screen and (max-width: 480px) {
   #custom-lrc {
-    width: 95%;
-    max-width: 95%;
-    font-size: 14px;
-    bottom: 60px;
-    line-height: 1.6;
+    max-width: 90%;
+    min-width: 150px;
+    font-size: 13px;
+    bottom: 80px;
+    line-height: 1.5;
+    padding: 4px 12px;
+    max-height: 60px;
   }
 }
 
 @media screen and (min-width: 481px) and (max-width: 768px) {
   #custom-lrc {
-    font-size: 16px;
-    bottom: 50px;
+    font-size: 14px;
+    bottom: 100px;
+    max-height: 70px;
   }
 }
 
 @media screen and (min-width: 769px) and (max-width: 1024px) {
   #custom-lrc {
-    font-size: 18px;
+    font-size: 14px;
+    max-height: 75px;
   }
 }
