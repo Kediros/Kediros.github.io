@@ -306,6 +306,55 @@
   }
 
   /**
+   * 绑定歌词切换按钮
+   * APlayer 的 .aplayer-icon-lrc 点击时默认切换内置歌词显示，
+   * 由于我们隐藏了内置歌词，需要改为切换自定义歌词 #custom-lrc 的显示
+   */
+  function bindLrcToggle () {
+    const lrcBtn = document.querySelector('.aplayer-icon-lrc')
+    const customLrc = document.getElementById('custom-lrc')
+    if (!lrcBtn || !customLrc) return
+
+    // 移除 APlayer 默认的 lrc 切换行为（通过移除 onclick 或替换）
+    // APlayer 的 lrc 按钮点击会调用 player.toggleLrc()
+    // 我们保留这个调用，但拦截它的效果
+
+    // 获取 APlayer 实例
+    const players = window.aplayers
+    if (!players || players.length === 0) return
+    const player = players[0]
+
+    // 保存原始的 toggleLrc
+    const origToggleLrc = player.toggleLrc
+    if (origToggleLrc) {
+      player.toggleLrc = function () {
+        // 切换自定义歌词显示
+        if (customLrc.style.display === 'none') {
+          customLrc.style.display = ''
+          saveLrcState(true)
+        } else {
+          customLrc.style.display = 'none'
+          saveLrcState(false)
+        }
+        // 不同步到 APlayer 内置歌词（因为我们已经隐藏了它）
+      }
+    }
+
+    // 同时监听按钮点击（备用方案）
+    lrcBtn.addEventListener('click', function (e) {
+      // 如果 toggleLrc 已经被 patch，这里不需要额外操作
+      // 但为了防止事件冒泡导致 APlayer 内部处理，阻止默认行为
+      // 注意：不能 stopPropagation，否则 APlayer 的其他功能可能受影响
+    })
+
+    // 恢复歌词显示状态
+    const lrcState = getLrcState()
+    if (lrcState && !lrcState.visible) {
+      customLrc.style.display = 'none'
+    }
+  }
+
+  /**
    * 修补 loadMeting 函数，使其跳过带有 .no-destroy 类的固定播放器
    * 这样 Pjax 导航时 Meting 不会销毁和重建固定播放器，音乐不会中断
    *
@@ -490,12 +539,8 @@
         // 初始化歌词同步
         initLrcSync()
 
-        // 歌词显示状态恢复
-        const lrcState = getLrcState()
-        if (lrcState && !lrcState.visible) {
-          const customLrc = document.getElementById('custom-lrc')
-          if (customLrc) customLrc.style.display = 'none'
-        }
+        // 绑定歌词切换按钮
+        bindLrcToggle()
       }
     }, 500)
 
@@ -531,6 +576,7 @@
         if (player.options.fixed || (player.container && player.container.classList.contains('no-destroy'))) {
           bindPlayerEvents(player)
           initLrcSync()
+          bindLrcToggle()
 
           // 如果播放器被暂停，尝试恢复
           if (player.paused) {

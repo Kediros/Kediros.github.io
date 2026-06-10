@@ -90,6 +90,7 @@
   bottom: 20px !important;
   width: 400px;
   max-width: 400px;
+  min-width: 90px;
   z-index: 9999;
   margin: 0 !important;
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
@@ -136,18 +137,50 @@
   z-index: 10;
 }
 
-/* 播放器信息区域 */
+/* 播放器信息区域 - 展开状态 */
 .aplayer.aplayer-fixed .aplayer-info {
   margin-left: 90px !important;
   height: 90px !important;
   padding: 10px 7px 0 !important;
   border-top: none !important;
-  transform: none !important;
+  /* 不使用 transform: none，让 narrow 模式的 scaleX(0) 能正常隐藏 info */
 }
 
 /* 隐藏 APlayer 自带的歌词（使用自定义歌词 #custom-lrc） */
 .aplayer.aplayer-fixed .aplayer-lrc {
   display: none !important;
+}
+
+/* ========================================
+   APlayer 收缩（narrow）模式
+   点击 miniswitcher 按钮时切换 .aplayer-narrow 类
+   ======================================== */
+
+/* 收缩时：外层容器缩小到仅显示封面图 + miniswitcher */
+.aplayer.aplayer-fixed.aplayer-narrow {
+  width: 90px !important;
+  max-width: 90px !important;
+}
+
+/* 收缩时：body 同步缩小 */
+.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+  width: 90px !important;
+  max-width: 90px !important;
+  padding-right: 18px !important;
+}
+
+/* 收缩时：封面图保持 90x90 */
+.aplayer.aplayer-fixed.aplayer-narrow .aplayer-pic {
+  width: 90px !important;
+  height: 90px !important;
+}
+
+/* 收缩时：info 区域通过 scaleX(0) 隐藏（APlayer 默认行为） */
+/* 注意：不要覆盖 transform，让 APlayer 的 scaleX(0) 生效 */
+
+/* 收缩时：miniswitcher 图标旋转回正常方向（展开箭头） */
+.aplayer.aplayer-fixed.aplayer-narrow .aplayer-miniswitcher .aplayer-icon {
+  transform: rotateY(0deg) !important;
 }
 
 /* 小屏幕适配 */
@@ -172,6 +205,19 @@
     height: 70px !important;
     padding: 8px 5px 0 !important;
   }
+  /* 小屏幕收缩模式 */
+  .aplayer.aplayer-fixed.aplayer-narrow {
+    width: 70px !important;
+    max-width: 70px !important;
+  }
+  .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+    width: 70px !important;
+    max-width: 70px !important;
+  }
+  .aplayer.aplayer-fixed.aplayer-narrow .aplayer-pic {
+    width: 70px !important;
+    height: 70px !important;
+  }
 }
 
 @media screen and (max-width: 480px) {
@@ -185,6 +231,19 @@
     max-width: calc(100% - 20px) !important;
     left: 10px !important;
     bottom: 10px !important;
+  }
+  /* 极小屏幕收缩模式 */
+  .aplayer.aplayer-fixed.aplayer-narrow {
+    width: 66px !important;
+    max-width: 66px !important;
+  }
+  .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+    width: 66px !important;
+    max-width: 66px !important;
+  }
+  .aplayer.aplayer-fixed.aplayer-narrow .aplayer-pic {
+    width: 66px !important;
+    height: 66px !important;
   }
 }
 
