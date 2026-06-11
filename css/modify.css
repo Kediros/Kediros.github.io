@@ -45,11 +45,21 @@
 [data-theme='dark'] .top-img {
   filter: brightness(0.8);
 }
+/* ===== Footer 毛玻璃效果 ===== */
+#footer {
+  background: transparent !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
 #footer:before {
-  background-color: rgba(255,255,255,0.5);
+  background-color: rgba(255,255,255,0.3);
+}
+[data-theme='dark'] #footer {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 [data-theme='dark'] #footer:before {
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0,0,0,0.4);
 }
 #footer-wrap,
 #footer-wrap a {
