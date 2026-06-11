@@ -104,12 +104,14 @@
 /* 这样 .aplayer-miniswitcher（position:absolute 相对于 body）能正确对齐 */
 /* padding-right:0 让 miniswitcher 紧贴右侧边缘，无空白间隙 */
 /* .aplayer-info 使用 padding-right:18px 避免内容被 miniswitcher 遮挡 */
+/* height:90px 确保 miniswitcher（height:100%）与封面图高度完全对齐 */
 .aplayer.aplayer-fixed .aplayer-body {
   position: relative !important;
   left: auto !important;
   bottom: auto !important;
   width: 100% !important;
   max-width: 100% !important;
+  height: 90px !important;
   padding-right: 0 !important;
   box-shadow: none !important;
   right: auto !important;
