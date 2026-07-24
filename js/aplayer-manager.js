@@ -26,7 +26,8 @@
         volume: player.audio ? player.audio.volume : 1,
         order: player.options.order || 'list',
         loop: player.options.loop || 'all',
-        theme: document.documentElement.getAttribute('data-theme') || 'light'
+        theme: document.documentElement.getAttribute('data-theme') || 'light',
+        paused: player.paused === undefined ? false : player.paused
       }
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
     } catch (e) {
@@ -198,8 +199,10 @@
                 } catch (e) { /* ignore */ }
               }, 500)
             }
-            // 自动播放
-            player.play()
+            // 只在用户之前正在播放时才恢复（必须有明确的 paused=false）
+            if (savedState.paused === false) {
+              player.play()
+            }
           } catch (e) { /* ignore */ }
         }, 1000)
       } else if (savedState.currentTime > 0) {
@@ -472,25 +475,23 @@
         }
       }
 
-      // ---- 步骤9: 如果播放器被暂停，恢复播放 ----
+      // 只在用户之前正在播放时才恢复播放
       for (var i = 0; i < protectedPlayers.length; i++) {
         var p = protectedPlayers[i]
-        if (p.paused) {
-          var savedState = getSavedState()
-          if (savedState) {
-            if (savedState.volume !== undefined && p.audio) {
-              p.volume(savedState.volume, true)
-            }
-            // 延迟恢复，等待页面完全加载
-            setTimeout(function () {
-              try {
-                if (savedState.currentTime > 0) {
-                  p.seek(savedState.currentTime)
-                }
-                p.play()
-              } catch (e) { /* ignore */ }
-            }, 800)
+        var savedState = getSavedState()
+        if (savedState && savedState.paused === false) {
+          if (savedState.volume !== undefined && p.audio) {
+            p.volume(savedState.volume, true)
           }
+          // 延迟恢复，等待页面完全加载
+          setTimeout(function () {
+            try {
+              if (savedState.currentTime > 0) {
+                p.seek(savedState.currentTime)
+              }
+              p.play()
+            } catch (e) { /* ignore */ }
+          }, 800)
         }
       }
     }
@@ -566,19 +567,17 @@
           initLrcSync()
           bindLrcToggle()
 
-          // 如果播放器被暂停，尝试恢复
-          if (player.paused) {
-            const savedState = getSavedState()
-            if (savedState) {
-              setTimeout(function () {
-                try {
-                  if (savedState.currentTime > 0) {
-                    player.seek(savedState.currentTime)
-                  }
-                  player.play()
-                } catch (e) { /* ignore */ }
-              }, 500)
-            }
+          // 只在用户之前正在播放时才恢复播放
+          const savedState = getSavedState()
+          if (savedState && savedState.paused === false) {
+            setTimeout(function () {
+              try {
+                if (savedState.currentTime > 0) {
+                  player.seek(savedState.currentTime)
+                }
+                player.play()
+              } catch (e) { /* ignore */ }
+            }, 500)
           }
           break
         }
