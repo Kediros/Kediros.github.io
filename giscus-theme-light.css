@@ -1,0 +1,271 @@
+/* ========================================
+   Giscus 自定义亮色主题
+   部署后通过 https://kediros.github.io/giscus-theme-light.css 访问
+   ======================================== */
+
+main {
+  /* 主色调：冰蓝 */
+  --primary-default: 93, 173, 226;
+
+  /* 背景 */
+  --bg-default: 232, 244, 250;
+
+  /* 文字颜色 */
+  --color-fg-default: #1a3a4a;
+  --color-fg-muted: #3d6680;
+  --color-fg-subtle: #6b95ad;
+
+  /* 背景颜色 */
+  --color-canvas-default: #e8f4fa;
+  --color-canvas-subtle: #d8ecf5;
+  --color-canvas-inset: #c8e3ef;
+
+  /* 边框 */
+  --color-border-default: #a8cfe0;
+  --color-border-muted: #c5dbe7;
+
+  /* 按钮 */
+  --color-btn-text: #1a3a4a;
+  --color-btn-bg: #d8ecf5;
+  --color-btn-border: #a8cfe0;
+  --color-btn-hover-bg: #c8e3ef;
+  --color-btn-hover-border: #7ec8e3;
+  --color-btn-primary-text: #ffffff;
+  --color-btn-primary-bg: #5dade2;
+  --color-btn-primary-border: #5dade2;
+  --color-btn-primary-hover-bg: #4a9bd0;
+  --color-btn-primary-hover-border: #4a9bd0;
+
+  /* 语法高亮 */
+  --color-prettylights-syntax-comment: #6b95ad;
+  --color-prettylights-syntax-constant: #0550ae;
+  --color-prettylights-syntax-entity: #8250df;
+  --color-prettylights-syntax-storage-modifier-import: #1a3a4a;
+  --color-prettylights-syntax-entity-tag: #116329;
+  --color-prettylights-syntax-keyword: #cf222e;
+  --color-prettylights-syntax-string: #0a3069;
+  --color-prettylights-syntax-variable: #953800;
+  --color-prettylights-syntax-brackethighlighter-unmatched: #82071e;
+  --color-prettylights-syntax-invalid-illegal-text: #e8f4fa;
+  --color-prettylights-syntax-invalid-illegal-bg: #82071e;
+  --color-prettylights-syntax-carriage-return-text: #e8f4fa;
+  --color-prettylights-syntax-carriage-return-bg: #cf222e;
+  --color-prettylights-syntax-string-regexp: #116329;
+  --color-prettylights-syntax-markup-list: #3b2300;
+  --color-prettylights-syntax-markup-heading: #0550ae;
+  --color-prettylights-syntax-markup-italic: #1a3a4a;
+  --color-prettylights-syntax-markup-bold: #1a3a4a;
+  --color-prettylights-syntax-markup-deleted-text: #82071e;
+  --color-prettylights-syntax-markup-deleted-bg: #ffebe9;
+  --color-prettylights-syntax-markup-inserted-text: #116329;
+  --color-prettylights-syntax-markup-inserted-bg: #dafbe1;
+  --color-prettylights-syntax-markup-changed-text: #953800;
+  --color-prettylights-syntax-markup-changed-bg: #ffd8b5;
+  --color-prettylights-syntax-markup-ignored-text: #eaeef2;
+  --color-prettylights-syntax-markup-ignored-bg: #0550ae;
+  --color-prettylights-syntax-meta-diff-range: #8250df;
+  --color-prettylights-syntax-brackethighlighter-angle: #3d6680;
+  --color-prettylights-syntax-sublimelinter-gutter-mark: #6b95ad;
+  --color-prettylights-syntax-constant-other-reference-link: #0a3069;
+
+  /* Action list */
+  --color-action-list-item-default-hover-bg: rgba(126, 200, 227, 0.2);
+
+  /* Segmented control */
+  --color-segmented-control-bg: #d8ecf5;
+
+  /* Timeline */
+  --color-timeline-text-bg: #e8f4fa;
+
+  /* 链接 */
+  --color-accent-fg: #2d6a9f;
+  --color-accent-emphasis: #5dade2;
+  --color-accent-muted: rgba(93, 173, 226, 0.4);
+  --color-accent-subtle: rgba(93, 173, 226, 0.1);
+
+  /* Success/attention */
+  --color-success-fg: #1a8870;
+  --color-attention-fg: #9a6700;
+  --color-attention-subtle: #fff8c5;
+  --color-severe-fg: #bc4c00;
+  --color-danger-fg: #cf222e;
+
+  /* Header */
+  --color-header-text: #1a3a4a;
+  --color-header-bg: #d8ecf5;
+
+  /* Counter */
+  --color-counter-border: #a8cfe0;
+
+  /* Filter list */
+  --color-filter-item-hover-bg: rgba(126, 200, 227, 0.15);
+}
+
+/* ---- 隐藏 GitHub 图标 ---- */
+.gsc-social-login svg,
+.gsc-github-login svg,
+a[href*="github"] > svg,
+.gsc-header svg {
+  display: none !important;
+}
+
+/* ---- 简化登录区域 ---- */
+.gsc-header {
+  padding: 8px 0 16px !important;
+}
+
+/* 登录按钮样式 */
+.gsc-social-login a,
+.gsc-github-login,
+a.gsc-login {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 8px 24px !important;
+  border-radius: 20px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  background: #5dade2 !important;
+  color: #fff !important;
+  border: none !important;
+  text-decoration: none !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 2px 8px rgba(93, 173, 226, 0.3) !important;
+}
+
+.gsc-social-login a:hover,
+.gsc-github-login:hover,
+a.gsc-login:hover {
+  opacity: 0.9 !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(93, 173, 226, 0.4) !important;
+}
+
+/* ---- 评论卡片 ---- */
+.gsc-comment {
+  border-radius: 12px !important;
+  margin-bottom: 16px !important;
+  padding: 16px !important;
+  background: #f0f7fb !important;
+  border: 1px solid #c5dbe7 !important;
+  transition: all 0.3s ease !important;
+}
+
+.gsc-comment:hover {
+  border-color: #7ec8e3 !important;
+  box-shadow: 0 2px 12px rgba(126, 200, 227, 0.15) !important;
+}
+
+/* ---- 评论框 ---- */
+.gsc-comment-box {
+  border-radius: 12px !important;
+  border: 1px solid #a8cfe0 !important;
+  background: #f0f7fb !important;
+  overflow: hidden !important;
+}
+
+.gsc-comment-box-textarea {
+  border-radius: 12px !important;
+  font-size: 14px !important;
+  line-height: 1.7 !important;
+  color: #1a3a4a !important;
+  background: #ffffff !important;
+}
+
+/* ---- 分页按钮 ---- */
+.gsc-pagination {
+  margin-top: 20px !important;
+}
+
+.gsc-pagination button {
+  border-radius: 20px !important;
+  padding: 6px 20px !important;
+  font-size: 13px !important;
+  border: 1px solid #a8cfe0 !important;
+  background: #d8ecf5 !important;
+  color: #1a3a4a !important;
+  transition: all 0.3s ease !important;
+}
+
+.gsc-pagination button:hover {
+  background: #5dade2 !important;
+  color: #fff !important;
+  border-color: #5dade2 !important;
+}
+
+/* ---- 反应表情 ---- */
+.gsc-reactions {
+  border-radius: 10px !important;
+}
+
+.gsc-reaction-button {
+  border-radius: 8px !important;
+  transition: all 0.2s ease !important;
+}
+
+.gsc-reaction-button:hover {
+  transform: scale(1.1) !important;
+}
+
+/* ---- 回复区域 ---- */
+.gsc-reply {
+  margin-top: 12px !important;
+  padding-left: 16px !important;
+  border-left: 2px solid #c5dbe7 !important;
+}
+
+/* ---- 整体字体 ---- */
+.giscus,
+.gsc-main {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif !important;
+  font-size: 14px !important;
+  line-height: 1.7 !important;
+  color: #1a3a4a !important;
+}
+
+/* ---- 强制所有文字深色 ---- */
+.gsc-main,
+.gsc-main .gsc-comment,
+.gsc-main .gsc-comment-content,
+.gsc-main .gsc-comment-author,
+.gsc-main .gsc-comment-author a,
+.gsc-main .gsc-comment-header,
+.gsc-main .gsc-comment-meta,
+.gsc-main .gsc-comment-meta a,
+.gsc-main .gsc-comment-footer,
+.gsc-main .gsc-comment-footer a,
+.gsc-main .gsc-pagination,
+.gsc-main .gsc-pagination button,
+.gsc-main .gsc-header,
+.gsc-main .gsc-header a,
+.gsc-main .gsc-comment-box,
+.gsc-main .gsc-comment-box textarea,
+.gsc-main .gsc-comment-box input,
+.gsc-main .gsc-tab,
+.gsc-main .gsc-tab button,
+.gsc-main .gsc-reactions,
+.gsc-main .gsc-reactions button,
+.gsc-main .gsc-reaction-button,
+.gsc-main .gsc-upvotes,
+.gsc-main .gsc-upvotes button {
+  color: #1a3a4a !important;
+}
+
+.gsc-main a {
+  color: #2d6a9f !important;
+}
+
+.gsc-main a:hover {
+  color: #1a3a4a !important;
+}
+
+/* 输入框占位文字 */
+.gsc-comment-box-textarea::placeholder {
+  color: #6b95ad !important;
+  opacity: 1 !important;
+}
+
+/* ---- 隐藏 Giscus 底部 watermark ---- */
+.gsc-powered-by {
+  display: none !important;
+}

@@ -379,3 +379,78 @@ div.aplayer.aplayer-fixed.aplayer-narrow div.aplayer-body {
     max-height: 75px;
   }
 }
+
+/* ========================================
+   评论区美化 - 圆角毛玻璃外层容器
+   ======================================== */
+
+/* 评论区域外层容器 */
+#post-comment .comment-wrap {
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  background: rgba(218, 235, 245, 0.85) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(126, 200, 227, 0.4) !important;
+  padding: 24px !important;
+  margin-top: 20px !important;
+  box-shadow: 0 2px 12px rgba(93, 173, 226, 0.12) !important;
+}
+
+/* 暗色模式评论容器 */
+[data-theme='dark'] #post-comment .comment-wrap {
+  background: rgba(26, 35, 48, 0.6) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(45, 64, 84, 0.5) !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Giscus iframe 容器 */
+#post-comment .giscus-container,
+#post-comment iframe.giscus-frame {
+  border-radius: 12px !important;
+}
+
+/* 评论标题样式 */
+#post-comment .comment-headline {
+  margin-bottom: 16px !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  color: #1a3a4a !important;
+}
+
+/* 日间模式：评论区域文字强制深色，保证在冰蓝背景上可读 */
+html:not([data-theme='dark']) #post-comment .comment-headline,
+html:not([data-theme='dark']) #post-comment .comment-headline span,
+html:not([data-theme='dark']) #post-comment .comment-headline i {
+  color: #1a3a4a !important;
+}
+
+html:not([data-theme='dark']) #post-comment .comment-headline a {
+  color: #2d6a9f !important;
+}
+
+/* 评论加载过渡动画 */
+#post-comment .comment-wrap {
+  animation: commentFadeIn 0.5s ease !important;
+}
+
+@keyframes commentFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 小屏幕适配 */
+@media screen and (max-width: 768px) {
+  #post-comment .comment-wrap {
+    padding: 16px !important;
+    border-radius: 12px !important;
+  }
+}
