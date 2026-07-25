@@ -483,15 +483,18 @@
           if (savedState.volume !== undefined && p.audio) {
             p.volume(savedState.volume, true)
           }
-          // 延迟恢复，等待页面完全加载
-          setTimeout(function () {
-            try {
-              if (savedState.currentTime > 0) {
-                p.seek(savedState.currentTime)
-              }
-              p.play()
-            } catch (e) { /* ignore */ }
-          }, 800)
+          // 只在播放器被意外暂停时才 seek 和 play
+          // 如果音乐一直在播，不要 seek 打断
+          if (p.paused) {
+            setTimeout(function () {
+              try {
+                if (savedState.currentTime > 0) {
+                  p.seek(savedState.currentTime)
+                }
+                p.play()
+              } catch (e) { /* ignore */ }
+            }, 800)
+          }
         }
       }
     }
@@ -567,17 +570,17 @@
           initLrcSync()
           bindLrcToggle()
 
-          // 只在用户之前正在播放时才恢复播放
-          const savedState = getSavedState()
-          if (savedState && savedState.paused === false) {
-            setTimeout(function () {
-              try {
-                if (savedState.currentTime > 0) {
-                  player.seek(savedState.currentTime)
-                }
-                player.play()
-              } catch (e) { /* ignore */ }
-            }, 500)
+          // Pjax 跳转时播放器未被销毁，音乐一直在播
+          // 只在播放器被意外暂停时才恢复，不要 seek 打断正在播放的音乐
+          if (player.paused) {
+            const savedState = getSavedState()
+            if (savedState && savedState.paused === false) {
+              setTimeout(function () {
+                try {
+                  player.play()
+                } catch (e) { /* ignore */ }
+              }, 500)
+            }
           }
           break
         }
