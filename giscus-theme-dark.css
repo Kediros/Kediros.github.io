@@ -156,7 +156,7 @@ a.gsc-login:hover {
   box-shadow: 0 2px 12px rgba(126, 200, 227, 0.12) !important;
 }
 
-/* 评论框整体容器：背景统一，去掉底部留白 */
+/* 评论框整体容器 */
 .gsc-comment-box {
   border-radius: 12px !important;
   border: 1px solid #2d4054 !important;
@@ -165,32 +165,61 @@ a.gsc-login:hover {
   padding: 0 !important;
 }
 
-/* 评论框内部所有区域背景统一 */
-.gsc-comment-box *,
+/* 所有内部区域背景统一，去除 padding/margin */
 .gsc-comment-box .Box,
 .gsc-comment-box .Box-body,
-.gsc-comment-box .Box-footer,
-.gsc-comment-box .Box-header {
+.gsc-comment-box .Box-header,
+.gsc-comment-box .Box-footer {
   background: #243344 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
 }
 
-/* textarea 本身 */
+/* textarea */
 .gsc-comment-box-textarea,
 .gsc-comment-box textarea {
   background: #243344 !important;
   border: none !important;
   border-bottom: 1px dashed #2d4054 !important;
   border-radius: 0 !important;
-  margin-bottom: 0 !important;
+  margin: 0 !important;
   padding: 12px !important;
+  display: block !important;
+  width: 100% !important;
 }
 
-/* 底部按钮栏：收紧，两端对齐 */
+/* Markdown 提示行：收紧到最小，不要撑出空白 */
+.gsc-comment-box-textarea-extras {
+  background: #243344 !important;
+  padding: 2px 12px !important;
+  margin: 0 !important;
+  border: none !important;
+  min-height: auto !important;
+  line-height: 1.4 !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.gsc-comment-box-textarea-extras a {
+  font-size: 12px !important;
+  color: #5a7a8a !important;
+}
+
+/* textarea 外层 wrapper 去掉间距 */
+.gsc-comment-box .Box-body,
+.gsc-comment-box [class*="textarea-wrap"],
+.gsc-comment-box [class*="input-wrap"],
+.gsc-comment-box [class*="editor"] {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* 底部按钮栏 */
 .gsc-comment-box .Box-footer,
 .gsc-comment-box [class*="footer"],
 .gsc-comment-box [class*="toolbar"] {
   background: #243344 !important;
-  border-top: none !important;
   padding: 6px 12px !important;
   margin: 0 !important;
   display: flex !important;
@@ -198,6 +227,7 @@ a.gsc-login:hover {
   justify-content: space-between !important;
   gap: 8px !important;
   min-height: auto !important;
+  border: none !important;
 }
 
 /* toolbar 内部容器 */
