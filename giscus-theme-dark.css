@@ -164,6 +164,22 @@ a.gsc-login:hover {
   overflow: hidden !important;
 }
 
+/* 评论框底部 toolbar 背景透明，避免左侧空白露底色 */
+.gsc-comment-box .gsc-comment-box-bottom,
+.gsc-comment-box .Box-footer,
+.gsc-comment-box [class*="footer"],
+.gsc-comment-box [class*="toolbar"] {
+  background: transparent !important;
+  border-top: 1px solid #2d4054 !important;
+}
+
+/* toolbar 内部容器透明 */
+.gsc-comment-box-bottom,
+.gsc-toolbar,
+.gsc-comment-box-toolbar {
+  background: transparent !important;
+}
+
 .gsc-comment-box-textarea {
   border-radius: 12px !important;
   font-size: 14px !important;
