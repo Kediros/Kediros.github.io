@@ -189,21 +189,9 @@ a.gsc-login:hover {
   width: 100% !important;
 }
 
-/* Markdown 提示行：收紧到最小，不要撑出空白 */
+/* Markdown 提示行：直接隐藏，消除空白 */
 .gsc-comment-box-textarea-extras {
-  background: #ffffff !important;
-  padding: 2px 12px !important;
-  margin: 0 !important;
-  border: none !important;
-  min-height: auto !important;
-  line-height: 1.4 !important;
-  display: flex !important;
-  align-items: center !important;
-}
-
-.gsc-comment-box-textarea-extras a {
-  font-size: 12px !important;
-  color: #6b95ad !important;
+  display: none !important;
 }
 
 /* textarea 外层 wrapper 去掉间距 */
