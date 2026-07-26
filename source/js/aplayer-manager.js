@@ -26,7 +26,8 @@
         volume: player.audio ? player.audio.volume : 1,
         order: player.options.order || 'list',
         loop: player.options.loop || 'all',
-        theme: document.documentElement.getAttribute('data-theme') || 'light'
+        theme: document.documentElement.getAttribute('data-theme') || 'light',
+        paused: player.paused === undefined ? false : player.paused
       }
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
     } catch (e) {
@@ -198,8 +199,10 @@
                 } catch (e) { /* ignore */ }
               }, 500)
             }
-            // 自动播放
-            player.play()
+            // 只在用户之前正在播放时才恢复（必须有明确的 paused=false）
+            if (savedState.paused === false) {
+              player.play()
+            }
           } catch (e) { /* ignore */ }
         }, 1000)
       } else if (savedState.currentTime > 0) {
@@ -303,6 +306,43 @@
 
     // 同时也用定时器作为后备
     setInterval(syncLrc, 200)
+  }
+
+  /**
+   * 绑定歌词切换按钮
+   * APlayer 的 .aplayer-icon-lrc 点击时默认调用 player.lrc.show() / player.lrc.hide()
+   * 来切换内置歌词显示。由于我们隐藏了内置歌词（display:none），
+   * 需要拦截按钮点击，改为切换自定义歌词 #custom-lrc 的显示。
+   *
+   * 注意：APlayer 的 initLrcButton 直接调用 lrc.show()/lrc.hide()，不是 toggleLrc()，
+   * 所以补丁 toggleLrc 无效。我们改用事件捕获来拦截 lrc 按钮的点击。
+   */
+  function bindLrcToggle () {
+    const lrcBtn = document.querySelector('.aplayer-icon-lrc')
+    const customLrc = document.getElementById('custom-lrc')
+    if (!lrcBtn || !customLrc) return
+
+    // 使用事件捕获阶段拦截 lrc 按钮点击，阻止 APlayer 的默认行为
+    // 注意：APlayer 在冒泡阶段处理点击，我们在捕获阶段拦截并 stopPropagation
+    lrcBtn.addEventListener('click', function (e) {
+      e.stopPropagation()
+      e.preventDefault()
+
+      // 切换自定义歌词显示
+      if (customLrc.style.display === 'none') {
+        customLrc.style.display = ''
+        saveLrcState(true)
+      } else {
+        customLrc.style.display = 'none'
+        saveLrcState(false)
+      }
+    }, true) // 使用捕获阶段 (true)
+
+    // 恢复歌词显示状态
+    const lrcState = getLrcState()
+    if (lrcState && !lrcState.visible) {
+      customLrc.style.display = 'none'
+    }
   }
 
   /**
@@ -435,16 +475,17 @@
         }
       }
 
-      // ---- 步骤9: 如果播放器被暂停，恢复播放 ----
+      // 只在用户之前正在播放时才恢复播放
       for (var i = 0; i < protectedPlayers.length; i++) {
         var p = protectedPlayers[i]
-        if (p.paused) {
-          var savedState = getSavedState()
-          if (savedState) {
-            if (savedState.volume !== undefined && p.audio) {
-              p.volume(savedState.volume, true)
-            }
-            // 延迟恢复，等待页面完全加载
+        var savedState = getSavedState()
+        if (savedState && savedState.paused === false) {
+          if (savedState.volume !== undefined && p.audio) {
+            p.volume(savedState.volume, true)
+          }
+          // 只在播放器被意外暂停时才 seek 和 play
+          // 如果音乐一直在播，不要 seek 打断
+          if (p.paused) {
             setTimeout(function () {
               try {
                 if (savedState.currentTime > 0) {
@@ -490,12 +531,8 @@
         // 初始化歌词同步
         initLrcSync()
 
-        // 歌词显示状态恢复
-        const lrcState = getLrcState()
-        if (lrcState && !lrcState.visible) {
-          const customLrc = document.getElementById('custom-lrc')
-          if (customLrc) customLrc.style.display = 'none'
-        }
+        // 绑定歌词切换按钮
+        bindLrcToggle()
       }
     }, 500)
 
@@ -531,16 +568,15 @@
         if (player.options.fixed || (player.container && player.container.classList.contains('no-destroy'))) {
           bindPlayerEvents(player)
           initLrcSync()
+          bindLrcToggle()
 
-          // 如果播放器被暂停，尝试恢复
+          // Pjax 跳转时播放器未被销毁，音乐一直在播
+          // 只在播放器被意外暂停时才恢复，不要 seek 打断正在播放的音乐
           if (player.paused) {
             const savedState = getSavedState()
-            if (savedState) {
+            if (savedState && savedState.paused === false) {
               setTimeout(function () {
                 try {
-                  if (savedState.currentTime > 0) {
-                    player.seek(savedState.currentTime)
-                  }
                   player.play()
                 } catch (e) { /* ignore */ }
               }, 500)

@@ -10,7 +10,7 @@ nav:
 # Menu 目錄
 menu:
   Home: / || fas fa-home
-  追番: / bangumis/ || fas fa-home
+  追番: /bangumis/ || fas fa-home
   # Archives: /archives/ || fas fa-archive
   # Tags: /tags/ || fas fa-tags
   # Categories: /categories/ || fas fa-folder-open
@@ -100,9 +100,9 @@ error_img:
 
 # A simple 404 page
 error_404:
-  enable: false
+  enable: true
   subtitle: 'Page Not Found'
-  background:
+  background: https://s2.loli.net/2025/05/10/JUovNEO8zalmusy.png
 
 post_meta:
   page: # Home Page
@@ -407,7 +407,7 @@ addtoany:
 comments:
   # Up to two comments system, the first will be shown as default
   # Choose: Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo/Giscus/Remark42/Artalk
-  use: # Valine,Disqus
+  use: Giscus
   text: true # Display the comment name next to the button
   # lazyload: The comment system will be load when comment element enters the browser's viewport.
   # If you set it to true, the comment count will be invalid
@@ -493,12 +493,13 @@ twikoo:
 # Giscus
 # https://giscus.app/
 giscus:
-  repo:
-  repo_id:
-  category_id:
+  repo: Kediros/Kediros.github.io
+  repo_id: R_kgDOK87Vfg
+  category: Announcements
+  category_id: DIC_kwDOK87Vfs4DB8Qf
   theme:
-    light: light
-    dark: dark
+    light: https://kediros.github.io/giscus-theme-light.css
+    dark: https://kediros.github.io/giscus-theme-dark.css
   option:
 
 # Remark42
@@ -770,7 +771,7 @@ subtitle:
 
 # Loading Animation (加載動畫)
 preloader:
-  enable: false
+  enable: true
   # source
   # 1. fullpage-loading
   # 2. pace (progress bar)
@@ -781,7 +782,7 @@ preloader:
 # wordcount (字數統計)
 # see https://butterfly.js.org/posts/ceeb73f/#字數統計
 wordcount:
-  enable: false
+  enable: true
   post_wordcount: true
   min2read: true
   total_wordcount: true
@@ -918,7 +919,7 @@ inject:
     - <script src="/js/aplayer-manager.js"></script>
   bottom:
     # aplayer音乐 - 使用 data-fixed="true" 保持 Pjax 跳转时不销毁，使用 localStorage 持久化播放状态
-    - <div class="aplayer no-destroy" data-id="381390469" data-server="netease" data-type="playlist" data-order="list" data-fixed="true" data-preload="auto" data-autoplay="false" data-mutex="true" data-storage-name="metingjs" muted id="custom-lrc"></div>
+    - <div class="aplayer no-destroy" data-id="381390469" data-server="netease" data-type="playlist" data-order="list" data-fixed="true" data-preload="auto" data-autoplay="false" data-mutex="true" data-storage-name="metingjs" muted id="aplayer-container"></div>
 # CDN
 # Don't modify the following settings unless you know how they work
 # 非必要請不要修改

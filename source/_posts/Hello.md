@@ -3,7 +3,7 @@ title: Hello
 abbrlink: '0'
 date: 2023-12-23 10:00:00
 categories:
-    - tset
+    - test
 tags:
     - test
 comments: true

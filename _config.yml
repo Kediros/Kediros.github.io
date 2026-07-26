@@ -164,42 +164,47 @@ plugins:
 # https://github.com/HCLonely/hexo-bilibili-bangumi
 bangumi: # 追番设置
   enable: true
+  source: bili
+  bgmInfoSource: 'bgmv0'
   path:
   vmid: 173347950
   title: '追番列表'
   quote: '好看的'
+  theme: auto
   show: 1
-  lazyload: false
-  loading:
-  metaColor:
-  color:
-  webp:
-  progress:
-  extra_options:
-    key: value
+  lazyload: true
+  webp: true
+  progress: true
+  progressBar:
+  order: latest
+  extraOrder:
+  pagination: false
 cinema: # 追剧设置
   enable: false
+  source: bili
+  bgmInfoSource: 'bgmv0'
   path:
   vmid: 173347950
   title: '追剧列表'
   quote: '好看的'
+  theme: auto
   show: 1
   lazyload: true
-  loading:
-  metaColor:
-  color:
-  webp:
-  progress:
-  extra_options:
-    key: value
+  webp: true
+  progress: true
+  progressBar:
+  order: latest
+  extraOrder:
+  pagination: false
 
 # 百度主动推送
 # https://github.com/huiwang/hexo-baidu-url-submit
-baidu_url_submit:
-  count: 1        # 提交最新的多少个链接
-  host: blog.anheyu.com  # 在百度站长平台中添加的域名
-  token: Rgem9kAECSLflQq6   # 秘钥
-  path: baidu_urls.txt   # 文本文档的地址， 新链接会保存在此文本文档里
+# 域名下来后再配置自己的 host 和 token
+# baidu_url_submit:
+#   count: 1        # 提交最新的多少个链接
+#   host: blog.anheyu.com  # 在百度站长平台中添加的域名
+#   token: Rgem9kAECSLflQq6   # 秘钥
+#   path: baidu_urls.txt   # 文本文档的地址， 新链接会保存在此文本文档里
 
 # APlayer
 # https://github.com/MoePlayer/hexo-tag-aplayer/blob/master/docs/README-zh_cn.md
