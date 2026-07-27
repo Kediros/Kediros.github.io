@@ -524,46 +524,83 @@ html:not([data-theme='dark']) #post-comment .comment-headline a {
 
 /* ---------- 白色荷叶边围裙 ----------
    半透明雪纺/轻质平纹棉
-   - 能透出底下的黑色裙身
-   - 荷叶边边缘有硬衬支撑，不塌陷
-   - 轻盈空气感 */
+   - 覆盖正面与两侧，面积更大
+   - 荷叶边形状不规则，模拟自然垂坠的布料
+   - 边缘有硬衬支撑，不塌陷
+   - 透出底裙黑色 */
 .maid-apron {
   position: absolute;
-  top: 8%;
+  top: 5%;
   left: 50%;
   transform: translateX(-50%);
-  width: 55%;
-  max-width: 480px;
-  height: 40%;
-  /* 半透明白色雪纺 - 能透出底裙 */
-  background-color: rgba(248, 248, 242, 0.88);
+  width: 75%;
+  max-width: 620px;
+  height: 55%;
+  /* 半透明白色雪纺 - 透出底裙 */
+  background-color: rgba(248, 248, 242, 0.82);
   background-image:
     /* 雪纺细密纹理 */
     repeating-linear-gradient(45deg,
-      rgba(220,220,210,0.04) 0px,
-      rgba(220,220,210,0.04) 1px,
+      rgba(220,220,210,0.05) 0px,
+      rgba(220,220,210,0.05) 1px,
       transparent 1px,
       transparent 2px
     ),
-    /* 荷叶边竖向褶皱 - 顶部收紧，底部散开 */
+    /* 荷叶边竖向褶皱 - 不均匀间距模拟自然垂坠 */
     repeating-linear-gradient(0deg,
       transparent 0px,
-      transparent 6px,
-      rgba(200,200,190,0.06) 6px,
-      rgba(200,200,190,0.06) 7px
+      transparent 4px,
+      rgba(200,200,190,0.08) 4px,
+      rgba(200,200,190,0.08) 5px,
+      transparent 5px,
+      transparent 9px,
+      rgba(210,210,200,0.05) 9px,
+      rgba(210,210,200,0.05) 10px,
+      transparent 10px,
+      transparent 14px,
+      rgba(195,195,185,0.07) 14px,
+      rgba(195,195,185,0.07) 15px
     ),
-    /* 顶部腰部高光 */
+    /* 顶部腰部收紧高光 */
+    radial-gradient(ellipse 40% 20% at 50% 0%,
+      rgba(255,255,255,0.2) 0%,
+      transparent 60%
+    ),
+    /* 底部渐暗 - 布料厚度 */
     linear-gradient(180deg,
-      rgba(255,255,255,0.15) 0%,
-      transparent 15%
+      transparent 0%,
+      transparent 70%,
+      rgba(220,220,210,0.15) 100%
     );
-  /* 底部荷叶边弧形 */
-  border-radius: 0 0 45% 45% / 0 0 30px 30px;
-  /* 围裙阴影 - 投影到黑裙上 */
+  /* 底部荷叶边 - 不规则弧形 */
+  border-radius: 0 0 50% 50% / 0 0 8% 8%;
+  /* 围裙投影到黑裙上 + 内部边缘阴影 */
   box-shadow:
-    0 4px 15px rgba(0,0,0,0.25),
-    inset 0 -10px 20px rgba(230,230,220,0.3);
+    0 4px 20px rgba(0,0,0,0.3),
+    inset 0 -15px 30px rgba(225,225,215,0.35),
+    inset 2px 0 8px rgba(230,230,220,0.15),
+    inset -2px 0 8px rgba(230,230,220,0.15);
   z-index: 1;
+}
+
+/* 围裙底部荷叶边波形 - 用伪元素叠加不规则边缘 */
+.maid-apron::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background-image:
+    radial-gradient(ellipse 24px 16px at 50% 0%,
+      rgba(248,248,242,0.85) 45%,
+      rgba(248,248,242,0.3) 75%,
+      transparent 76%
+    );
+  background-size: 48px 20px;
+  background-repeat: repeat-x;
+  background-position: 0 0;
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.15));
 }
 
 /* ---------- 白色领口 ----------
@@ -583,39 +620,46 @@ html:not([data-theme='dark']) #post-comment .comment-headline a {
 
 /* ---------- 底部蕾丝花边 ----------
    精致蕾丝/刺绣花边
-   - 多层弧形模拟花瓣
+   - 面积更大，更醒目
+   - 多层弧形花瓣 + 刺绣
    - 微透光 */
 .maid-trim {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 28px;
-  /* 蕾丝花边：双层弧形花瓣 + 细密点状刺绣 */
+  height: 48px;
+  /* 蕾丝花边：多层弧形花瓣 */
   background-image:
-    /* 底层大花瓣 */
-    radial-gradient(ellipse 16px 12px at 50% 100%,
-      rgba(248,248,242,0.95) 40%,
-      rgba(248,248,242,0.4) 70%,
+    /* 底层大花瓣 - 较宽 */
+    radial-gradient(ellipse 26px 18px at 50% 100%,
+      rgba(248,248,242,0.95) 42%,
+      rgba(248,248,242,0.5) 70%,
       transparent 71%
     ),
-    /* 顶层小花瓣 */
-    radial-gradient(ellipse 10px 7px at 50% 100%,
-      rgba(255,255,255,0.9) 35%,
-      transparent 36%
+    /* 顶层小花瓣 - 错位 */
+    radial-gradient(ellipse 18px 12px at 50% 100%,
+      rgba(255,255,255,0.9) 38%,
+      transparent 39%
     ),
     /* 刺绣点状装饰 */
-    radial-gradient(circle 1.5px at 50% 50%,
-      rgba(230,230,220,0.6) 100%,
+    radial-gradient(circle 2px at 50% 50%,
+      rgba(230,230,220,0.7) 100%,
+      transparent 100%
+    ),
+    /* 底部直线填充 - 蕾丝基底 */
+    linear-gradient(180deg,
+      rgba(248,248,242,0.9) 0%,
+      rgba(248,248,242,0.9) 50%,
+      transparent 50%,
       transparent 100%
     );
-  background-size: 32px 28px, 32px 28px, 16px 14px;
-  background-repeat: repeat-x;
-  background-position: 0 0, 16px 0, 8px 4px;
+  background-size: 52px 36px, 52px 36px, 26px 18px, 100% 100%;
+  background-repeat: repeat-x, repeat-x, repeat-x, no-repeat;
+  background-position: 0 0, 26px 0, 13px 6px, 0 0;
   z-index: 1;
-  opacity: 0.92;
-  /* 蕾丝底部投影 */
-  filter: drop-shadow(0 -1px 2px rgba(0,0,0,0.1));
+  opacity: 0.95;
+  filter: drop-shadow(0 -1px 3px rgba(0,0,0,0.12));
 }
 
 /* ---------- 加载文字 ---------- */
