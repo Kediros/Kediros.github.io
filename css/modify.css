@@ -456,9 +456,9 @@ html:not([data-theme='dark']) #post-comment .comment-headline a {
 }
 
 /* ========================================
-   女仆裙加载动画 - 黑裙白领，向上提起
-   材质：微哑光斜纹棉布黑裙 + 半透明雪纺围裙 + 蕾丝花边
-   动画：提一点 → 顿 → 一口气提走 → 布料抖动拖尾
+   女仆裙加载动画 - SVG 整体绘制
+   黑裙 + 白色扇形围裙 + 蕾丝花边
+   动画：提一点 -> 顿 -> 一口气提走 -> 布料抖动拖尾
    ======================================== */
 
 #loading-box {
@@ -472,248 +472,22 @@ html:not([data-theme='dark']) #post-comment .comment-headline a {
   pointer-events: none;
 }
 
-/* ---------- 黑裙主体 ----------
-   微哑光高密度斜纹棉布
-   - 底色偏深但不纯黑，带微妙的蓝灰调
-   - 斜纹纹理用 repeating-linear-gradient 模拟
-   - 哑光质感：低对比度高光，不出现镜面反射 */
 .maid-skirt {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  /* 斜纹棉布底色 + 微哑光高光 */
-  background-color: #161616;
-  background-image:
-    /* 斜纹纹理 - 高密度棉布特征 */
-    repeating-linear-gradient(135deg,
-      rgba(255,255,255,0.012) 0px,
-      rgba(255,255,255,0.012) 1px,
-      transparent 1px,
-      transparent 2px,
-      rgba(0,0,0,0.03) 2px,
-      rgba(0,0,0,0.03) 3px,
-      transparent 3px,
-      transparent 4px
-    ),
-    /* 腰部放射状拉扯褶皱 - 顶部较亮 */
-    radial-gradient(ellipse 60% 30% at 50% 0%,
-      rgba(45,45,48,0.6) 0%,
-      rgba(25,25,28,0.3) 40%,
-      transparent 70%
-    ),
-    /* 侧光 - 模拟左侧光源 */
-    linear-gradient(90deg,
-      rgba(50,50,55,0.08) 0%,
-      transparent 30%,
-      transparent 70%,
-      rgba(20,20,22,0.12) 100%
-    ),
-    /* 垂直渐变 - 顶部稍亮(腰部), 底部稍暗(重力垂坠) */
-    linear-gradient(180deg,
-      #1a1a1d 0%,
-      #161618 15%,
-      #121214 40%,
-      #0e0e10 70%,
-      #0a0a0c 100%
-    );
   transform-origin: bottom center;
   transform: translateY(0) scaleY(1);
 }
 
-/* ---------- 白色荷叶边围裙 ----------
-   半透明雪纺/轻质平纹棉
-   - 扇形：顶部用超大圆角让两侧弧线收窄，真正上窄下宽
-   - 褶皱用明暗交替渐变模拟立体凸起和凹陷
-   - 透出底裙黑色 */
-.maid-apron {
-  position: absolute;
-  top: 5%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 62%;
-  max-width: 520px;
-  height: 54%;
-  /* 扇形：顶部圆角极大，让两侧弧线收窄 */
-  border-radius: 48% 48% 6% 6% / 55% 55% 4% 4%;
-  /* 半透明白色雪纺 */
-  background-color: rgba(252, 252, 248, 0.87);
-  background-image:
-    /* 雪纺细密纹理 */
-    repeating-linear-gradient(45deg,
-      rgba(220,220,210,0.05) 0px,
-      rgba(220,220,210,0.05) 1px,
-      transparent 1px,
-      transparent 2px
-    ),
-    /* 立体褶皱：明暗交替模拟凸起/凹陷
-       每道褶皱 = 亮线(凸起脊) + 暗线(凹陷谷) */
-    repeating-linear-gradient(0deg,
-      transparent 0px,
-      transparent 3px,
-      /* 凸起脊 - 微亮 */
-      rgba(255,255,255,0.12) 3px,
-      rgba(255,255,255,0.12) 4px,
-      /* 凹陷谷 - 微暗 */
-      rgba(180,180,170,0.1) 4px,
-      rgba(180,180,170,0.1) 5px,
-      transparent 5px,
-      transparent 8px,
-      /* 第二道褶皱 - 不均匀间距 */
-      rgba(255,255,255,0.1) 8px,
-      rgba(255,255,255,0.1) 9px,
-      rgba(175,175,165,0.09) 9px,
-      rgba(175,175,165,0.09) 10px,
-      transparent 10px,
-      transparent 14px,
-      /* 第三道 - 更宽 */
-      rgba(255,255,255,0.14) 14px,
-      rgba(255,255,255,0.14) 15px,
-      rgba(170,170,160,0.11) 15px,
-      rgba(170,170,160,0.11) 16px,
-      transparent 16px,
-      transparent 21px,
-      /* 第四道 */
-      rgba(255,255,255,0.11) 21px,
-      rgba(255,255,255,0.11) 22px,
-      rgba(178,178,168,0.1) 22px,
-      rgba(178,178,168,0.1) 23px,
-      transparent 23px,
-      transparent 29px,
-      /* 第五道 - 最宽，底部褶皱更松 */
-      rgba(255,255,255,0.13) 29px,
-      rgba(255,255,255,0.13) 30px,
-      rgba(172,172,162,0.12) 30px,
-      rgba(172,172,162,0.12) 31px,
-      transparent 31px,
-      transparent 38px
-    ),
-    /* 顶部腰部收紧高光 */
-    radial-gradient(ellipse 30% 20% at 50% 0%,
-      rgba(255,255,255,0.25) 0%,
-      transparent 70%
-    ),
-    /* 底部布料厚度渐暗 */
-    linear-gradient(180deg,
-      transparent 0%,
-      transparent 60%,
-      rgba(218,218,208,0.2) 100%
-    );
-  /* 投影到黑裙上 */
-  filter: drop-shadow(0 4px 14px rgba(0,0,0,0.28));
-  z-index: 1;
-}
-
-/* 围裙底部荷叶边 - 和围裙连为一体，有褶皱感 */
-.maid-apron::before {
-  content: '';
-  position: absolute;
-  bottom: -18px;
-  left: -4%;
-  width: 108%;
-  height: 30px;
-  background-image:
-    /* 大花瓣 - 带明暗模拟褶皱 */
-    radial-gradient(ellipse 26px 20px at 50% 0%,
-      rgba(255,255,255,0.92) 30%,
-      rgba(248,248,242,0.7) 55%,
-      rgba(230,230,220,0.3) 72%,
-      transparent 73%
-    ),
-    /* 花瓣高光 - 左侧 */
-    radial-gradient(ellipse 8px 14px at 35% 10%,
-      rgba(255,255,255,0.3) 40%,
-      transparent 41%
-    ),
-    /* 小花瓣错位 */
-    radial-gradient(ellipse 17px 12px at 50% 25%,
-      rgba(255,255,255,0.85) 38%,
-      transparent 39%
-    );
-  background-size: 52px 30px, 52px 30px, 52px 30px;
-  background-repeat: repeat-x, repeat-x, repeat-x;
-  background-position: 0 0, 0 0, 26px 0;
-  filter: drop-shadow(0 2px 5px rgba(0,0,0,0.15));
-}
-
-/* 围裙腰部绑带 */
-.maid-apron::after {
-  content: '';
-  position: absolute;
-  top: -4px;
-  left: 25%;
-  width: 50%;
-  height: 6px;
-  background: linear-gradient(180deg, #ffffff 0%, #f0f0e8 50%, #e0e0d8 100%);
-  border-radius: 3px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2), inset 0 -1px 2px rgba(200,200,190,0.3);
-}
-
-/* ---------- 白色领口 ----------
-   顶部白领，微凸起 */
-.maid-collar {
-  position: absolute;
-  top: 0;
-  left: 0;
+.maid-svg {
   width: 100%;
-  height: 14px;
-  background: linear-gradient(180deg, #ffffff 0%, #f5f5ee 50%, #e8e8e0 100%);
-  box-shadow:
-    0 2px 4px rgba(0,0,0,0.15),
-    inset 0 -1px 2px rgba(200,200,190,0.3);
-  z-index: 2;
+  height: 100%;
+  display: block;
 }
 
-/* ---------- 底部蕾丝花边 ----------
-   精致蕾丝/刺绣花边
-   - 贴着裙摆底部，和黑裙连为一体
-   - 更白更醒目，有立体褶皱感
-   - 多层弧形花瓣 + 刺绣 */
-.maid-trim {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 48px;
-  background-image:
-    /* 底层大花瓣 - 白色，带明暗 */
-    radial-gradient(ellipse 26px 18px at 50% 100%,
-      rgba(255,255,255,0.95) 35%,
-      rgba(248,248,242,0.6) 65%,
-      transparent 70%
-    ),
-    /* 花瓣左侧高光 - 立体感 */
-    radial-gradient(ellipse 7px 12px at 38% 85%,
-      rgba(255,255,255,0.25) 40%,
-      transparent 41%
-    ),
-    /* 顶层小花瓣 - 错位 */
-    radial-gradient(ellipse 17px 12px at 50% 100%,
-      rgba(255,255,255,0.9) 36%,
-      transparent 39%
-    ),
-    /* 刺绣点状装饰 */
-    radial-gradient(circle 2px at 50% 55%,
-      rgba(235,235,225,0.7) 100%,
-      transparent 100%
-    ),
-    /* 直线填充 - 蕾丝基底 */
-    linear-gradient(180deg,
-      rgba(255,255,255,0.93) 0%,
-      rgba(255,255,255,0.93) 40%,
-      transparent 40%,
-      transparent 100%
-    );
-  background-size: 52px 36px, 52px 36px, 52px 36px, 26px 18px, 100% 100%;
-  background-repeat: repeat-x, repeat-x, repeat-x, repeat-x, no-repeat;
-  background-position: 0 0, 0 0, 26px 0, 13px 7px, 0 0;
-  z-index: 1;
-  opacity: 0.96;
-  filter: drop-shadow(0 -1px 2px rgba(0,0,0,0.06));
-}
-
-/* ---------- 加载文字 ---------- */
 .maid-loading {
   position: absolute;
   top: 50%;
@@ -727,24 +501,8 @@ html:not([data-theme='dark']) #post-comment .comment-headline a {
   text-shadow: 0 0 8px rgba(126, 200, 227, 0.3);
 }
 
-/* ---------- 加载完成动画 ----------
-   提一点 → 顿 → 一口气提走 → 布料抖动拖尾
-   使用 cubic-bezier 模拟物理惯性和回弹 */
-
 #loading-box.loaded .maid-skirt {
   animation: maid-lift-go 1.4s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
-}
-
-#loading-box.loaded .maid-apron {
-  animation: maid-apron-go 1.4s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
-}
-
-#loading-box.loaded .maid-collar {
-  animation: maid-collar-go 1.4s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
-}
-
-#loading-box.loaded .maid-trim {
-  animation: maid-trim-go 1.4s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
 }
 
 #loading-box.loaded .maid-loading {
@@ -752,121 +510,18 @@ html:not([data-theme='dark']) #post-comment .comment-headline a {
   transition: opacity 0.3s;
 }
 
-/* 黑裙提起：带抖动拖尾 */
 @keyframes maid-lift-go {
-  0% {
-    transform: translateY(0) scaleY(1) skewX(0);
-  }
-  /* 第一段：微微提起，布料微微变形 */
-  15% {
-    transform: translateY(-6%) scaleY(0.98) skewX(0.3deg);
-  }
-  /* 回弹一下 */
-  20% {
-    transform: translateY(-5%) scaleY(0.99) skewX(-0.2deg);
-  }
-  /* 停顿：积蓄力气 */
-  35% {
-    transform: translateY(-6%) scaleY(0.98) skewX(0);
-  }
-  /* 第二段：加速提上去 */
-  65% {
-    transform: translateY(-60%) scaleY(0.92) skewX(-0.5deg);
-  }
-  /* 过冲 */
-  78% {
-    transform: translateY(-103%) scaleY(0.86) skewX(0.8deg);
-  }
-  /* 回弹 - 布料抖动 */
-  88% {
-    transform: translateY(-98%) scaleY(0.88) skewX(-0.4deg);
-  }
-  /* 最终收尾 */
-  100% {
-    transform: translateY(-100%) scaleY(0.85) skewX(0);
-  }
+  0% { transform: translateY(0) scaleY(1) skewX(0); }
+  15% { transform: translateY(-6%) scaleY(0.98) skewX(0.3deg); }
+  20% { transform: translateY(-5%) scaleY(0.99) skewX(-0.2deg); }
+  35% { transform: translateY(-6%) scaleY(0.98) skewX(0); }
+  65% { transform: translateY(-60%) scaleY(0.92) skewX(-0.5deg); }
+  78% { transform: translateY(-103%) scaleY(0.86) skewX(0.8deg); }
+  88% { transform: translateY(-98%) scaleY(0.88) skewX(-0.4deg); }
+  100% { transform: translateY(-100%) scaleY(0.85) skewX(0); }
 }
 
-/* 围裙提起：跟随裙身，但有延迟和飘动 */
-@keyframes maid-apron-go {
-  0% {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0) skewX(0);
-  }
-  15% {
-    opacity: 1;
-    transform: translateX(-50%) translateY(-6%) skewX(-0.2deg);
-  }
-  35% {
-    opacity: 1;
-    transform: translateX(-50%) translateY(-6%) skewX(0);
-  }
-  /* 雪纺更轻，提得更快，飘动更明显 */
-  65% {
-    opacity: 0.7;
-    transform: translateX(-50%) translateY(-65%) skewX(0.8deg);
-  }
-  /* 飘动拖尾 */
-  78% {
-    opacity: 0.3;
-    transform: translateX(-50%) translateY(-103%) skewX(-0.6deg);
-  }
-  88% {
-    opacity: 0.15;
-    transform: translateX(-50%) translateY(-97%) skewX(0.3deg);
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(-50%) translateY(-100%) skewX(0);
-  }
-}
-
-/* 领口跟随提起 */
-@keyframes maid-collar-go {
-  0% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  15% {
-    transform: translateY(-6%);
-  }
-  35% {
-    transform: translateY(-6%);
-  }
-  100% {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-}
-
-/* 蕾丝边跟随提起，带轻微飘动 */
-@keyframes maid-trim-go {
-  0% {
-    transform: translateY(0) skewX(0);
-    opacity: 0.92;
-  }
-  15% {
-    transform: translateY(-6%) skewX(0.2deg);
-  }
-  35% {
-    transform: translateY(-6%) skewX(0);
-  }
-  65% {
-    transform: translateY(-60%) skewX(-0.4deg);
-    opacity: 0.5;
-  }
-  100% {
-    transform: translateY(-100%) skewX(0);
-    opacity: 0;
-  }
-}
-
-/* 文字脉冲 */
 @keyframes maid-pulse {
-  0%, 100% {
-    opacity: 0.6;
-  }
-  50% {
-    opacity: 1;
-  }
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
 }
