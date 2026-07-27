@@ -524,7 +524,7 @@ html:not([data-theme='dark']) #post-comment .comment-headline a {
 
 /* ---------- 白色荷叶边围裙 ----------
    半透明雪纺/轻质平纹棉
-   - 扇形：上窄下宽，符合真实围裙廓形
+   - 扇形弧面：上窄下宽，两侧是弧线不是直线
    - 荷叶边和围裙主体连为一体
    - 透出底裙黑色 */
 .maid-apron {
@@ -532,22 +532,13 @@ html:not([data-theme='dark']) #post-comment .comment-headline a {
   top: 6%;
   left: 50%;
   transform: translateX(-50%);
-  width: 70%;
-  max-width: 580px;
-  height: 50%;
-  /* 扇形廓形：上窄下宽，底部弧形 */
-  clip-path: polygon(
-    28% 0%,
-    72% 0%,
-    72% 82%,
-    100% 92%,
-    100% 100%,
-    0% 100%,
-    0% 92%,
-    28% 82%
-  );
+  width: 65%;
+  max-width: 540px;
+  height: 52%;
+  /* 扇形：上窄下宽，用 border-radius 做弧线 */
+  border-radius: 30% 30% 50% 50% / 8% 8% 20% 20%;
   /* 半透明白色雪纺 */
-  background-color: rgba(248, 248, 242, 0.84);
+  background-color: rgba(252, 252, 248, 0.86);
   background-image:
     /* 雪纺细密纹理 */
     repeating-linear-gradient(45deg,
@@ -584,54 +575,53 @@ html:not([data-theme='dark']) #post-comment .comment-headline a {
     linear-gradient(180deg,
       transparent 0%,
       transparent 65%,
-      rgba(215,215,205,0.18) 100%
+      rgba(220,220,210,0.18) 100%
     ),
     /* 两侧渐暗 - 围裙边缘卷曲 */
     linear-gradient(90deg,
-      rgba(220,220,210,0.12) 0%,
-      transparent 15%,
-      transparent 85%,
-      rgba(220,220,210,0.12) 100%
+      rgba(225,225,215,0.12) 0%,
+      transparent 12%,
+      transparent 88%,
+      rgba(225,225,215,0.12) 100%
     );
   /* 投影到黑裙上 */
   filter: drop-shadow(0 4px 12px rgba(0,0,0,0.25));
   z-index: 1;
 }
 
-/* 围裙底部荷叶边 - 和围裙连为一体，同宽扇形展开 */
+/* 围裙底部荷叶边 - 和围裙连为一体 */
 .maid-apron::before {
   content: '';
   position: absolute;
-  bottom: -14px;
-  left: -8%;
-  width: 116%;
-  height: 24px;
-  /* 荷叶边波形 - 与围裙底部衔接 */
+  bottom: -16px;
+  left: -6%;
+  width: 112%;
+  height: 28px;
   background-image:
     /* 大花瓣 */
-    radial-gradient(ellipse 22px 16px at 50% 0%,
-      rgba(248,248,242,0.88) 48%,
-      rgba(248,248,242,0.4) 72%,
+    radial-gradient(ellipse 24px 18px at 50% 0%,
+      rgba(252,252,248,0.9) 48%,
+      rgba(252,252,248,0.35) 72%,
       transparent 73%
     ),
     /* 小花瓣错位 */
-    radial-gradient(ellipse 14px 10px at 50% 20%,
-      rgba(255,255,255,0.8) 40%,
+    radial-gradient(ellipse 16px 11px at 50% 20%,
+      rgba(255,255,255,0.85) 40%,
       transparent 41%
     );
-  background-size: 44px 24px, 44px 24px;
+  background-size: 48px 28px, 48px 28px;
   background-repeat: repeat-x;
-  background-position: 0 0, 22px 0;
+  background-position: 0 0, 24px 0;
   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.12));
 }
 
-/* 围裙腰部绑带 - 细条区分围裙和黑裙 */
+/* 围裙腰部绑带 */
 .maid-apron::after {
   content: '';
   position: absolute;
   top: -3px;
-  left: 20%;
-  width: 60%;
+  left: 22%;
+  width: 56%;
   height: 5px;
   background: linear-gradient(180deg, #ffffff 0%, #e8e8e0 100%);
   border-radius: 2px;
@@ -656,45 +646,44 @@ html:not([data-theme='dark']) #post-comment .comment-headline a {
 /* ---------- 底部蕾丝花边 ----------
    精致蕾丝/刺绣花边
    - 贴着裙摆底部，和黑裙连为一体
-   - 多层弧形花瓣 + 刺绣
-   - 微透光 */
+   - 更白更醒目
+   - 多层弧形花瓣 + 刺绣 */
 .maid-trim {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 40px;
-  /* 蕾丝花边：多层弧形花瓣 */
+  height: 44px;
   background-image:
-    /* 底层大花瓣 */
-    radial-gradient(ellipse 22px 15px at 50% 100%,
-      rgba(248,248,242,0.92) 42%,
-      rgba(248,248,242,0.45) 70%,
+    /* 底层大花瓣 - 更白 */
+    radial-gradient(ellipse 24px 16px at 50% 100%,
+      rgba(255,255,255,0.95) 42%,
+      rgba(252,252,248,0.5) 70%,
       transparent 71%
     ),
     /* 顶层小花瓣 - 错位 */
-    radial-gradient(ellipse 15px 10px at 50% 100%,
-      rgba(255,255,255,0.88) 38%,
+    radial-gradient(ellipse 16px 11px at 50% 100%,
+      rgba(255,255,255,0.92) 38%,
       transparent 39%
     ),
     /* 刺绣点状装饰 */
-    radial-gradient(circle 1.8px at 50% 50%,
-      rgba(230,230,220,0.65) 100%,
+    radial-gradient(circle 2px at 50% 50%,
+      rgba(240,240,230,0.7) 100%,
       transparent 100%
     ),
-    /* 直线填充 - 蕾丝基底，占上半部分 */
+    /* 直线填充 - 蕾丝基底，更白 */
     linear-gradient(180deg,
-      rgba(248,248,242,0.88) 0%,
-      rgba(248,248,242,0.88) 45%,
+      rgba(255,255,255,0.92) 0%,
+      rgba(255,255,255,0.92) 45%,
       transparent 45%,
       transparent 100%
     );
-  background-size: 44px 30px, 44px 30px, 22px 15px, 100% 100%;
+  background-size: 48px 32px, 48px 32px, 24px 16px, 100% 100%;
   background-repeat: repeat-x, repeat-x, repeat-x, no-repeat;
-  background-position: 0 0, 22px 0, 11px 5px, 0 0;
+  background-position: 0 0, 24px 0, 12px 6px, 0 0;
   z-index: 1;
-  opacity: 0.93;
-  filter: drop-shadow(0 -1px 2px rgba(0,0,0,0.1));
+  opacity: 0.95;
+  filter: drop-shadow(0 -1px 2px rgba(0,0,0,0.08));
 }
 
 /* ---------- 加载文字 ---------- */
