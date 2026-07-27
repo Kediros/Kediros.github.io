@@ -159,10 +159,18 @@ a.gsc-login:hover {
 /* 评论框整体容器 */
 .gsc-comment-box {
   border-radius: 12px !important;
-  border: 1px solid #a8cfe0 !important;
+  border: none !important;
   background: #ffffff !important;
   overflow: hidden !important;
   padding: 0 !important;
+}
+
+/* 去除 focus 时外层容器的边框/轮廓 */
+.gsc-comment-box:focus,
+.gsc-comment-box:focus-within,
+.gsc-comment-box *:focus {
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 /* 所有内部区域背景白色，去除 padding/margin */
