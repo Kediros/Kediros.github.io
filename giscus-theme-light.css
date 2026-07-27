@@ -173,6 +173,27 @@ a.gsc-login:hover {
   box-shadow: none !important;
 }
 
+/* textarea focus 时也去掉外层边框，只保留自身的边框 */
+.gsc-comment-box-textarea:focus,
+.gsc-comment-box textarea:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border: 1px solid #7ec8e3 !important;
+}
+
+/* Giscus 可能用的 wrapper 元素 focus 样式 */
+.gsc-comment-box .Box:focus,
+.gsc-comment-box .Box-body:focus,
+.gsc-comment-box [class*="textarea-wrap"]:focus,
+.gsc-comment-box [class*="input-wrap"]:focus,
+.gsc-comment-box [class*="editor"]:focus,
+.gsc-comment-box [class*="form"]:focus,
+.gsc-comment-box [class*="field"]:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
 /* 所有内部区域背景白色，去除 padding/margin */
 .gsc-comment-box .Box,
 .gsc-comment-box .Box-body,
