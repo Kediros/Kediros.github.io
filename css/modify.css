@@ -391,7 +391,7 @@ div.aplayer.aplayer-fixed.aplayer-narrow div.aplayer-body {
   background: rgba(218, 235, 245, 0.85) !important;
   backdrop-filter: blur(10px) !important;
   -webkit-backdrop-filter: blur(10px) !important;
-  border: 1px solid rgba(126, 200, 227, 0.4) !important;
+  border: 1px solid #7ec8e3 !important;
   padding: 24px !important;
   margin-top: 20px !important;
   box-shadow: 0 2px 12px rgba(93, 173, 226, 0.12) !important;
@@ -402,7 +402,7 @@ div.aplayer.aplayer-fixed.aplayer-narrow div.aplayer-body {
   background: rgba(26, 35, 48, 0.6) !important;
   backdrop-filter: blur(10px) !important;
   -webkit-backdrop-filter: blur(10px) !important;
-  border: 1px solid rgba(45, 64, 84, 0.5) !important;
+  border: 1px solid #2d4054 !important;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15) !important;
 }
 
