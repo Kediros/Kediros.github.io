@@ -180,13 +180,13 @@ a.gsc-login:hover {
 .gsc-comment-box-textarea,
 .gsc-comment-box textarea {
   background: #ffffff !important;
-  border: none !important;
-  border-bottom: 1px dashed #c5dbe7 !important;
-  border-radius: 0 !important;
-  margin: 0 !important;
+  border: 1px solid #7ec8e3 !important;
+  border-radius: 8px !important;
+  margin: 8px !important;
   padding: 12px !important;
   display: block !important;
-  width: 100% !important;
+  width: calc(100% - 16px) !important;
+  box-sizing: border-box !important;
 }
 
 /* Markdown 提示行：直接隐藏，消除空白 */
@@ -228,7 +228,6 @@ a.gsc-login:hover {
 }
 
 .gsc-comment-box-textarea {
-  border-radius: 12px !important;
   font-size: 14px !important;
   line-height: 1.7 !important;
   color: #1a3a4a !important;
