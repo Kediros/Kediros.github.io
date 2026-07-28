@@ -493,12 +493,13 @@ html:not([data-theme='dark']) #post-comment .comment-headline a {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: #7ec8e3;
-  font-size: 14px;
-  letter-spacing: 3px;
+  color: #b0d8e8;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 4px;
   z-index: 3;
   animation: maid-pulse 1.5s ease-in-out infinite;
-  text-shadow: 0 0 8px rgba(126, 200, 227, 0.3);
+  text-shadow: 0 0 12px rgba(126, 200, 227, 0.5), 0 0 24px rgba(126, 200, 227, 0.2);
 }
 
 #loading-box.loaded .maid-skirt {
