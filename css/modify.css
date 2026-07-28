@@ -480,6 +480,7 @@ html:not([data-theme='dark']) #post-comment .comment-headline a {
   height: 100%;
   transform-origin: bottom center;
   transform: translateY(0) scaleY(1);
+  animation: maid-breeze 4s ease-in-out infinite;
 }
 
 .maid-svg {
@@ -501,12 +502,6 @@ html:not([data-theme='dark']) #post-comment .comment-headline a {
   animation: maid-pulse 1.5s ease-in-out infinite;
   text-shadow: 0 0 12px rgba(126, 200, 227, 0.5), 0 0 24px rgba(126, 200, 227, 0.2);
 }
-
-#loading-box.loaded .maid-skirt {
-  animation: maid-lift-go 1.4s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
-}
-
-#loading-box.loaded .maid-loading {
   opacity: 0;
   transition: opacity 0.3s;
 }
@@ -525,4 +520,28 @@ html:not([data-theme='dark']) #post-comment .comment-headline a {
 @keyframes maid-pulse {
   0%, 100% { opacity: 0.6; }
   50% { opacity: 1; }
+}
+
+/* 光源扫描 - 柔光从上往下移动 */
+.light-sweep-rect {
+  animation: light-sweep 3.5s ease-in-out infinite;
+}
+
+@keyframes light-sweep {
+  0% { transform: translateY(-100%); opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translateY(100%); opacity: 0; }
+}
+
+/* 微风吹拂 - 裙摆极轻微摇摆 */
+@keyframes maid-breeze {
+  0%, 100% { transform: translateY(0) scaleY(1) skewX(0); }
+  25% { transform: translateY(0) scaleY(1) skewX(0.15deg); }
+  50% { transform: translateY(0) scaleY(1) skewX(0); }
+  75% { transform: translateY(0) scaleY(1) skewX(-0.15deg); }
+}
+
+#loading-box.loaded .maid-skirt {
+  animation: maid-lift-go 1.4s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
 }
